@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="createForm" enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
+    <div class="mb-4">
+      <label for="exampleFormControlInput1" class="form-label">Subject title </label>
+      <input type="text" class="form-control" placeholder="Name" formControlName="title">
+    </div>
+    <div class="mb-4">
+      <label for="exampleFormControlInput1" class="form-label">Image Upload</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" formControlName="content">
+    </div>
+    <div class="btn-group mb-5" *ngFor="let item of technologyList; index as i">
+      <button type="button" class="btn btn-warning dropdown-toggle me-4" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        {{ item.title }}
+      </button>
+      <ul class="dropdown-menu">
+        <li class="mb-1" *ngFor="let a of item.technologyLessons; index as b">
+
+          <span (click)="getLessonId(a.id)" class="fs-5 fw-semibold"> {{ a.title }}</span>
+
+        </li>
+      </ul>
+    </div>
+    <div class="mb-4">
+
+
+      <button type="submit" class="btn btn-warning">
+        <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
+            aria-hidden="true"></span>
+          Ading...</span>
+        <span *ngIf="!isCreating"> Submit</span>
+      </button>
+      </div>
+  </form>
+</div>
+

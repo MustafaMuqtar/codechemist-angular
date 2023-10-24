@@ -1,0 +1,14 @@
+.purple{
+    background-color: rgb(120, 52, 184);
+}
+
+
+hr{
+ height: 1px;
+    background-color: #ffc107;
+    border: none;
+}
+
+*{
+    color:  #ffc107;
+}

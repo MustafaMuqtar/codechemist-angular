@@ -1,0 +1,22 @@
+<div class="container" >
+    <form [formGroup]="createForm" enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
+        <div class="mb-4">
+            <label for="exampleFormControlInput1" class="form-label">Technology name </label>
+            <input type="text" class="form-control" placeholder="Name" formControlName="title">
+        </div>
+        <div class="mb-4">
+            <label for="exampleFormControlInput1" class="form-label">Image Upload</label>
+            <input type="file" class="form-control" placeholder="Image" (change)="onFileSelect($event)"
+                formControlName="image">
+        </div>
+    
+        <div class="mb-4">
+            <button type="submit" class="btn btn-warning">
+                <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
+                    aria-hidden="true"></span>
+                  Ading...</span>
+                <span *ngIf="!isCreating"> Submit</span>
+              </button>        </div>
+
+    </form>
+</div>

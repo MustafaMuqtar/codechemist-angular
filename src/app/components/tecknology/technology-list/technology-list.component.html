@@ -1,1 +1,34 @@
-<p>technology-list works!</p>
+<div class="py-5 text-center container">
+  <div class="row py-lg-1">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light text-warning">Codechemist</h1>
+      <p class="lead text-muted">
+        Something short and leading about the collection below—its contents, the
+        creator, etc. Make it short and sweet, but not too short so folks don’t
+        simply skip over it entirely.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="album py-5">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+      <div class="col" *ngFor="let technology of technologyList; index as i">
+        <div routerLink="/technology/detail/{{ technology.id }}" class="card shadow-sm border border-warning">
+          <img [src]="technology.image" class="card-img-top"  width="100%" height="225" alt="..." />
+          <div class="card-body">
+            <p class="card-text">
+              {{ technology.title }}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

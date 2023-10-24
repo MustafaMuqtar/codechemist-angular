@@ -1,1 +1,47 @@
-<p>technology-detail works!</p>
+<div class="d-flex flex-row mb-3  ">
+  <div class="flex-shrink-0 p-3 " style="width: 280px">
+    <a class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom border-warning">
+      <img [src]="technology.image" width="50" height="50" class="bi me-2" alt="..." />
+
+      <span class="fs-4 fw-semibold text-warning">{{ technology.title }} </span>
+    </a>
+    <ul class="list-unstyled ps-0">
+      <li *ngFor="let technologyLesson of technology.technologyLessons; index as i" class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+          data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+          <span class="fs-5 fw-semibold text-warning" (click)="showSubItem(i)"> {{ technologyLesson.title }}</span>
+        </button>
+        <div *ngIf="visibleIndex === i">
+          <div *ngFor="let lessonSubject of technologyLesson.lessonSubjects; index as b" class="collapse show"
+            id="home-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ms-5 small">
+              <li>
+                <a class=" fs-6 fw-semibold link-body-emphasis d-inline-flex text-decoration-none rounded pe-auto mb-4"
+                  (click)="showSubItem2(lessonSubject.id)">{{ lessonSubject.title }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr style=" height: 1px;
+        background-color: #ffc107;
+        border: none;" />
+      </li>
+    </ul>
+  </div>
+
+  <div class="mt-5 ms-3">
+    <div *ngFor="let technologyLesson of technology.technologyLessons; index as i">
+      <div *ngFor="let lessonSubject of technologyLesson.lessonSubjects; index as b">
+        <div *ngIf="visibleIndex2 === lessonSubject.id">
+          <h1 class="fs-1 fw-semibold">{{ lessonSubject.title }}</h1>
+
+          <div class="video-player">
+            <app-video-player [videoLink]="lessonSubject.content"></app-video-player>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="createForm" enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
+    <div class="mb-4">
+      <label for="exampleFormControlInput1" class="form-label">Lesson name
+      </label>
+      <input type="text" class="form-control" placeholder="Name" formControlName="title" />
+    </div>
+    <div class="btn-group mb-5">
+      <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Action
+      </button>
+      <ul class="dropdown-menu" >
+      <div *ngFor="let technology of technologyList; index as i">
+        <li (click)="getTechnologiId(technology.id)"><a class="dropdown-item" >{{technology.title}}</a></li>
+      </div>
+      </ul>
+    </div>
+    <div class="mb-4">
+      <button type="submit" class="btn btn-warning">
+        <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
+            aria-hidden="true"></span>
+          Ading...</span>
+        <span *ngIf="!isCreating"> Submit</span>
+      </button>    </div>
+  </form>
+</div>
