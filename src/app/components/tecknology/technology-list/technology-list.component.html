@@ -13,7 +13,7 @@
 
 <div class="album py-5">
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+    <div class="row  d-flex justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
       <div class="col" *ngFor="let technology of technologyList; index as i">
         <div routerLink="/technology/detail/{{ technology.id }}" class="card shadow-sm border border-warning">
           <img [src]="technology.image" class="card-img-top"  width="100%" height="225" alt="..." />

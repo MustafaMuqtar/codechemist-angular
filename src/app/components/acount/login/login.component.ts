@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
   loginUser(loginDto: Login) {
     this.authService.login(loginDto).subscribe((jwtDto) => {
      let user = localStorage.setItem("token", jwtDto.token);
+     if (jwtDto) {
+      this.router.navigate(['/'])
+
+     }
     });
   }
 }
