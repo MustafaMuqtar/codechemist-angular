@@ -2,11 +2,8 @@
   <div class="row py-lg-1">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light text-warning">Codechemist</h1>
-      <p class="lead text-muted">
-        Something short and leading about the collection below—its contents, the
-        creator, etc. Make it short and sweet, but not too short so folks don’t
-        simply skip over it entirely.
-      </p>
+      <p class="lead text-muted text-center">
+        En kemisk reaktion mellan HTML, CSS, Javascript, C#, .NET, Unity engine bildar ett fullspeckat hemsida eller spel. Testa själv för att se din egen kemiska reaktion. </p>
     </div>
   </div>
 </div>
@@ -16,7 +13,7 @@
     <div class="row  d-flex justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
       <div class="col" *ngFor="let technology of technologyList; index as i">
         <div routerLink="/technology/detail/{{ technology.id }}" class="card shadow-sm border border-warning">
-          <img [src]="technology.image" class="card-img-top"  width="100%" height="225" alt="..." />
+          <img [src]="technology.image" class="card-img-top" width="100%" height="225" alt="..." />
           <div class="card-body">
             <p class="card-text">
               {{ technology.title }}
@@ -29,6 +26,3 @@
     </div>
   </div>
 </div>
-
-
-
