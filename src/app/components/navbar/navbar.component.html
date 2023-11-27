@@ -12,21 +12,19 @@
 
       <ul class="navbar-nav col-lg-6 justify-content-lg-center">
         <li class="nav-item ">
-          <a class="nav-link link-light fs-3 " href="#">C#</a>
+          <a class="nav-link link-light fs-3 "routerLink="technology" href="#">Kurser</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-light fs-3" href="#">Javascript</a>
+          <a class="nav-link link-light fs-3" href="#">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled fs-3" aria-disabled="true">.NET</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link  disabled fs-3" aria-disabled="true">Unity</a>
+           <li class="nav-item">
+          <a class="nav-link  disabled fs-3" aria-disabled="true">Studio</a>
         </li>
          </ul>
       <div class="col-md-3 text-end">
-        <button type="button" routerLink="login" class="fs-5 btn btn-outline-warning me-2">Login</button>
-        <button type="button" routerLink="register" class="fs-5 btn btn-warning">Sign-up</button>
+        <button *ngIf="!hideButton" type="button" routerLink="login" class="fs-5 btn btn-outline-warning me-2">Login</button>
+        <button (click)="lougout()" *ngIf="hideButton" type="button" routerLink="login"  class="fs-5 btn btn-outline-warning me-2">Logout</button>
+        <button *ngIf="hideButton" type="button" routerLink="register" class="fs-5 btn btn-warning">Sign-up</button>
       </div>
     </div>
   </div>

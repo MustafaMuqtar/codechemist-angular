@@ -20,4 +20,8 @@ export class LessonService {
         return this.httpClient.post('https://localhost:7040/api/Lesson/', formData)
     }
 
+        deleteLesson( id: number) {
+
+        return this.httpClient.delete('https://localhost:7040/api/Lesson/'+ id)
+    }
 }

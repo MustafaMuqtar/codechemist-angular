@@ -12,7 +12,6 @@ import { LoginComponent } from "../components/acount/login/login.component";
 import { RegisterComponent } from "../components/acount/register/register.component";
 import { NotfoundComponent } from "../components/notfound/notfound.component";
 import { LessonCreateComponent } from "../components/lesson/lesson-create/lesson-create.component";
-import { TestComponent } from "../test/test.component";
 
 
 
@@ -30,7 +29,6 @@ const routes: Routes = [
     { path: 'lesson/edit/:id', component: LessonEditComponent },
    { path: 'subject/create', component: SubjectCreateComponent },
     { path: 'subject/edit/:id', component: SubjectEditComponent },
-    { path: 'test', component: TestComponent },
   { path: '**', component: NotfoundComponent },
 
 ]

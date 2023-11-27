@@ -11,6 +11,11 @@ export interface ITechnology {
           id: number
           title: string
           content: string
+          subjectsExercises: {
+            id: number
+            title: string
+            PDF: string
+          }
         }
 
       ]

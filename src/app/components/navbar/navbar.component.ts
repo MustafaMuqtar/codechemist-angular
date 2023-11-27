@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from '../acount/login/login.component';
+import { SharedDataService } from 'src/app/Services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +8,17 @@ import { LoginComponent } from '../acount/login/login.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  constructor(private sharedDataService: SharedDataService,private router: Router){}
 
- 
+  get hideButton(): boolean {
+    return this.sharedDataService.allowedAccess;
+  }
+
+
+  lougout() {
+    localStorage.removeItem("token");
+    this.router.navigate(['login'])
+
+
+  }
 }

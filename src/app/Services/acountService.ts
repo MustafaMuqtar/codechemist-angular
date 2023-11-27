@@ -13,24 +13,33 @@ export class AcountService {
 
     urlLogin = 'https://localhost:7040/api/Acount/Login/';
     urlRegister = 'https://localhost:7040/api/Acount/Register';
-    urlCurrentUser = 'https://localhost:7040/api/Acount/urlCurrentUser';
+    urlCurrentUser = 'https://localhost:7040/api/Acount/currentUser';
 
     constructor(private httpClient: HttpClient) {
 
 
     }
 
-    getCurrentUser(acount: string) {
 
-        return this.httpClient.get<IAcount>(this.urlCurrentUser + acount)
+
+    getCurrentUser(token: any) {
+
+        localStorage.getItem(token);
+
+        return this.httpClient.get(this.urlCurrentUser,
+            {
+                headers: {
+                    Authorization: "Bearer " + token,
+                    "x-access-token": token,
+                },
+            }
+
+        )
     }
 
-    postLogin( acount: string) {
 
-        return this.httpClient.post(this.urlLogin, acount)
-    }
 
-    postRegister( acount: string) {
+    postRegister(acount: string) {
 
         return this.httpClient.post(this.urlRegister, acount)
     }

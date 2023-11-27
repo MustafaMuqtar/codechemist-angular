@@ -18,8 +18,9 @@ import { LoginComponent } from './components/acount/login/login.component';
 import { RegisterComponent } from './components/acount/register/register.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TestComponent } from './test/test.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 
 @NgModule({
@@ -39,18 +40,18 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
     RegisterComponent,
     NotfoundComponent,
     FooterComponent,
-    TestComponent,
     VideoPlayerComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutesModule,
-    HttpClientModule, 
+    HttpClientModule,
     ReactiveFormsModule,
-    FormsModule      
+    FormsModule,
+    PdfViewerModule
 
-  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

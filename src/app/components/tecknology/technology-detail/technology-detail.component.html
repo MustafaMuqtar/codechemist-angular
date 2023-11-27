@@ -7,6 +7,9 @@
     </a>
     <ul class="list-unstyled ps-0">
       <li *ngFor="let technologyLesson of technology.technologyLessons; index as i" class="mb-1">
+        <button type="button" class="btn btn-danger  mb-2"
+          (click)="deleteLessonById(technologyLesson.id)">Danger</button>
+
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
           data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
           <span class="fs-5 fw-semibold text-warning" (click)="showSubItem(i)"> {{ technologyLesson.title }}</span>
@@ -15,10 +18,13 @@
           <div *ngFor="let lessonSubject of technologyLesson.lessonSubjects; index as b" class="collapse show"
             id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ms-5 small">
+
               <li>
-                <a role="button"  class=" fs-6 fw-semibold link-body-emphasis d-inline-flex text-decoration-none rounded pe-auto mb-4"
+                <a role="button"
+                  class=" fs-6 fw-semibold link-body-emphasis d-inline-flex text-decoration-none rounded pe-auto mb-4"
                   (click)="showSubItem2(lessonSubject.id)">{{ lessonSubject.title }}</a>
               </li>
+
             </ul>
           </div>
         </div>
@@ -33,15 +39,31 @@
     <div *ngFor="let technologyLesson of technology.technologyLessons; index as i">
       <div *ngFor="let lessonSubject of technologyLesson.lessonSubjects; index as b">
         <div *ngIf="visibleIndex2 === lessonSubject.id">
-          <h1 class="fs-1 fw-semibold">{{ lessonSubject.title }}</h1>
 
-          <div class="video-player">
-            <app-video-player [videoLink]="lessonSubject.content"></app-video-player>
+          <div class="container text-start  align-items-center ">
+            <div class="col ">
+              <button type="button" class="btn btn-danger  mb-2"
+                (click)="deleteSubjectById(lessonSubject.id)">Danger</button>
+
+              <h1 class="fs-1 fw-semibold">{{ lessonSubject.title }}</h1>
+
+              <app-video-player [videoLink]="lessonSubject.content"></app-video-player>
+            </div>
+            <div class="col mt-5 ">
+              <h1 class=" fs-1 fw-semibold">{{ lessonSubject.subjectsExercises.title }}</h1>
+              <button type="button" class="btn btn-danger  mb-2"
+                (click)="deleteExerciseById(lessonSubject.subjectsExercises.id)">Danger</button>
+
+              <pdf-viewer [src]="lessonSubject.subjectsExercises.pdf" [render-text]="true" [original-size]="false"
+                style="width: 700px; height: 700px"></pdf-viewer>
+            </div>
+
           </div>
-
         </div>
+
+
+
       </div>
     </div>
   </div>
 </div>
-

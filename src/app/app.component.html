@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
-<button *ngIf="hide" type="button" routerLink="/technology/create/" class="btn btn-warning me-3">Create
-    Technology</button>
-<button *ngIf="hide" type="button" routerLink="/lesson/create/" class="btn btn-warning me-3">Create
-    Lesson</button>
-<button *ngIf="hide" type="button" routerLink="/subject/create/" class="btn btn-warning me-3">Create
-    Subject</button>
+<div class="container mt-5">
+    <button *ngIf="hideButton" type="button" routerLink="/technology/create/" class="btn btn-warning me-3">Create
+        Technology</button>
+    <button *ngIf="hideButton" type="button" routerLink="/lesson/create/" class="btn btn-warning me-3">Create
+        Lesson</button>
+    <button *ngIf="hideButton" type="button" routerLink="/subject/create/" class="btn btn-warning me-3">Create
+        Subject</button>
+</div>
 
 <router-outlet></router-outlet>
 

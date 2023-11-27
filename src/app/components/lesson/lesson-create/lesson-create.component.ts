@@ -4,6 +4,7 @@ import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ITechnology } from 'src/app/models/technology';
 import { technologyService } from 'src/app/Services/technologyService';
+import { SharedDataService } from 'src/app/Services/shared-data.service';
 
 
 
@@ -24,7 +25,9 @@ export class LessonCreateComponent {
 
  
 
-  constructor(private lessonService: LessonService, private technologyService: technologyService, private router: Router, private activerouter: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private lessonService: LessonService, private technologyService: technologyService, private router: Router,
+     private activerouter: ActivatedRoute, private fb: FormBuilder,
+     private sharedDataService: SharedDataService) { }
   ngOnInit(): void {
     this.getTechnologyList()
 
@@ -34,6 +37,10 @@ export class LessonCreateComponent {
 
     })
 
+    if (!this.sharedDataService.user) {
+      this.router.navigate(['/'])
+
+   }
   }
 
   createForm = this.fb.group(

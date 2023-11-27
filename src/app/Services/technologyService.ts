@@ -30,5 +30,9 @@ export class technologyService {
 
         return this.httpClient.post('https://localhost:7040/api/Technology/', formData)
     }
+    deleteTechnology( id: number) {
+
+        return this.httpClient.delete('https://localhost:7040/api/Technology/'+ id)
+    }
 
 }

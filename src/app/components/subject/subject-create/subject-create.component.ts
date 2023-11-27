@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { SubjectService } from 'src/app/Services/subjectService';
 import { technologyService } from 'src/app/Services/technologyService';
 import { ITechnology } from 'src/app/models/technology';
@@ -21,9 +22,15 @@ export class SubjectCreateComponent {
   lessonName: null = null;
   isCreating: boolean = false
 
-  constructor(private technologyService: technologyService, private subjectService: SubjectService, private router: Router, private activerouter: ActivatedRoute, private fb: FormBuilder, private httpClient: HttpClient) { }
+  constructor(private technologyService: technologyService, private subjectService: SubjectService,
+     private router: Router, private activerouter: ActivatedRoute, 
+     private fb: FormBuilder, private httpClient: HttpClient,  private sharedDataService: SharedDataService) { }
   ngOnInit(): void {
 
+    if (!this.sharedDataService.user) {
+      this.router.navigate(['/'])
+
+   }
     this.getTechnologyList()
 
     this.form = this.fb.group({
@@ -61,7 +68,7 @@ export class SubjectCreateComponent {
     });
 
     formData.append('title', this.createForm.value.title);
-    formData.append('content', this.file, this.createForm.value.content);
+    formData.append('content', this.file);
     this.isCreating = true
 
 

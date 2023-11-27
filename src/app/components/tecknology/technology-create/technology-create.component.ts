@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
+import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { technologyService } from 'src/app/Services/technologyService';
 
 
@@ -17,15 +18,20 @@ export class TechnologyCreateComponent implements OnInit {
   isCreating: boolean = false
 
 
-  constructor(private technologyService: technologyService, private router: Router, private activerouter: ActivatedRoute, private fb: FormBuilder, private httpClient: HttpClient) { }
+  constructor(private technologyService: technologyService, private router: Router, 
+  private sharedDataService: SharedDataService, private fb: FormBuilder, private httpClient: HttpClient) { }
   ngOnInit(): void {
 
     this.form = this.fb.group({
       title: [''],
       image: [null],
-
+      
 
     })
+    if (!this.sharedDataService.user) {
+       this.router.navigate(['/'])
+
+    }
 
   }
 
@@ -45,7 +51,7 @@ export class TechnologyCreateComponent implements OnInit {
 
 
     formData.append('title', this.createForm.value.title);
-    formData.append('image', this.file, this.createForm.value.image);
+    formData.append('image', this.file);
 
     this.isCreating = true
 
