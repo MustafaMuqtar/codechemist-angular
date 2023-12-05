@@ -1,8 +1,8 @@
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { ExerciseService } from 'src/app/Services/exercise.service';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
-import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
 import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
@@ -27,7 +27,7 @@ export class TechnologyDetailComponent implements OnInit {
 
   constructor(private technologyService: TechnologyServiceService, private subjectService: SubjectServiceService, private lessonService: LessonServiceService,
     private exerciseService: ExerciseService, private route: ActivatedRoute, private router: Router,
-    private sharedDataService: SharedDataService
+    private authService: AuthenticationServiceService
   ) { }
 
 
@@ -57,10 +57,10 @@ export class TechnologyDetailComponent implements OnInit {
     this.technology && this.technologyService.getTechnologyById(this.technology).subscribe((result) => {
       this.technology = result;
     })
-    if (!this.sharedDataService.user) {
+    if (!this.authService.isAdmin) {
       this.router.navigate(['/'])
 
-    }
+   }
   }
 
   deleteSubjectById(id: number) {

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { ExerciseService } from 'src/app/Services/exercise.service';
-import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
 import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
@@ -24,10 +24,10 @@ export class ExerciseCreateComponent {
 
   constructor(private technologyService: TechnologyServiceService, private exerciseService: ExerciseService,
      private router: Router, private activerouter: ActivatedRoute, 
-     private fb: FormBuilder, private httpClient: HttpClient,  private sharedDataService: SharedDataService) { }
+     private fb: FormBuilder, private httpClient: HttpClient,  private authService: AuthenticationServiceService) { }
   ngOnInit(): void {
 
-    if (!this.sharedDataService.user) {
+    if (!this.authService.isAdmin()) {
       this.router.navigate(['/'])
 
    }

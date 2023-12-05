@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SharedDataService } from './Services/shared-data.service';
 import { AuthenticationServiceService } from './Services/authentication-service.service';
 import { jwtDecode } from 'jwt-decode';
 
@@ -13,29 +12,30 @@ export class AppComponent {
   title = 'codechemist';
 
   get hideButton(): boolean {
-    return this.sharedDataService.allowedAccess;
+    return this.authService.isAdmin()
   }
 
 
-  constructor(private authService: AuthenticationServiceService, private sharedDataService: SharedDataService) {
+  constructor(private authService: AuthenticationServiceService) {
   }
   ngOnInit(): void {
 
-   
 
 
- // this.accesCurrentUSer()
-    if (!this.sharedDataService.user) {
-      this.sharedDataService.allowedAccess = false
-    } 
+  this.accesCurrentUSer()
+
+  if (this.authService.isAdmin()) {
+    console.log('User is an admin');
+  }
+  else if (this.authService.isMember()) {
+    console.log('User is an mem');
+  }
   }
 
-  ngAfterContentInit() {
-  
-  }
+
 
   accesCurrentUSer() {
-    this.authService.getCurrentUser(this.sharedDataService.user).subscribe((data) => {
+    this.authService.getCurrentUser(this.authService.userToken).subscribe((data) => {
 
 
 

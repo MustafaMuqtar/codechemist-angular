@@ -24,7 +24,7 @@
       <div class="col-md-3 text-end">
         <button *ngIf="!hideButton" type="button" routerLink="login" class="fs-5 btn btn-outline-warning me-2">Login</button>
         <button (click)="lougout()" *ngIf="hideButton" type="button" routerLink="login"  class="fs-5 btn btn-outline-warning me-2">Logout</button>
-        <button *ngIf="hideButton" type="button" routerLink="register" class="fs-5 btn btn-warning">Sign-up</button>
+        <button *ngIf="hideRegister" type="button" routerLink="register" class="fs-5 btn btn-warning">Sign-up</button>
       </div>
     </div>
   </div>

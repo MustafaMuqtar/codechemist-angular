@@ -16,8 +16,14 @@ export class LoginComponent implements OnInit {
   jwtDto = new JwtAuth();
 
   constructor(private authService: AuthenticationServiceService, private router: Router) { }
-  ngOnInit(): void {
+   get hideButton(): boolean {
+    return this.authService.isMember()
 
+  }
+  ngOnInit(): void {
+    if (this.authService.userToken) {
+      this.router.navigate(['/'])
+   }
 
   }
 
@@ -31,9 +37,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", jwtDto.token);
 
 
-        this.router.navigate(['/'])
-        window.location.reload();
-
+        this.router.navigate(['/']).then(() => {
+          // Reload the page
+          window.location.reload();
+        });
       }
     });
   }

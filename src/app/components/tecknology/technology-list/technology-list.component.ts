@@ -30,7 +30,7 @@ export class TechnologyListComponent implements OnInit{
   deleteTechnologyById(id : number) {
     this.technologyService.deleteTechnology(id).subscribe((data) => {
       if (data == null) {
-    //    window.location.reload();
+      window.location.reload();
 
       }
     }) 

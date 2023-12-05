@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
-import { SharedDataService } from 'src/app/Services/shared-data.service';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 
 
@@ -19,7 +19,7 @@ export class TechnologyCreateComponent implements OnInit {
 
 
   constructor(private technologyService: TechnologyServiceService, private router: Router, 
-  private sharedDataService: SharedDataService, private fb: FormBuilder, private httpClient: HttpClient) { }
+    private authService: AuthenticationServiceService, private fb: FormBuilder, private httpClient: HttpClient) { }
   ngOnInit(): void {
 
     this.form = this.fb.group({
@@ -28,10 +28,10 @@ export class TechnologyCreateComponent implements OnInit {
       
 
     })
-    if (!this.sharedDataService.user) {
-       this.router.navigate(['/'])
+    if (!this.authService.isAdmin()) {
+      this.router.navigate(['/'])
 
-    }
+   }
 
   }
 

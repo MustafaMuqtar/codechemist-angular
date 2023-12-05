@@ -20,7 +20,6 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { ExerciseComponent } from './components/exercise/exercise/exercise.component';
 import { ExerciseCreateComponent } from './components/exercise/exercise-create/exercise-create.component';
 
 
@@ -43,7 +42,6 @@ import { ExerciseCreateComponent } from './components/exercise/exercise-create/e
     NotfoundComponent,
     FooterComponent,
     VideoPlayerComponent,
-    ExerciseComponent,
     ExerciseCreateComponent,
 
   ],

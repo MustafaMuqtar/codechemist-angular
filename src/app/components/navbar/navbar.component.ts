@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { Router } from '@angular/router';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,17 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private sharedDataService: SharedDataService,private router: Router){}
+  constructor(private authService: AuthenticationServiceService,private router: Router){}
 
   get hideButton(): boolean {
-    return this.sharedDataService.allowedAccess;
+    return this.authService.isMember()
+
+  }
+
+  get hideRegister(): boolean {
+    return this.authService.isAdmin()
+
   }
 
 
   lougout() {
     localStorage.removeItem("token");
-    this.router.navigate(['login'])
-
+    this.router.navigate(['/']).then(() => {
+      // Reload the page
+      window.location.reload();
+    });
 
   }
 }

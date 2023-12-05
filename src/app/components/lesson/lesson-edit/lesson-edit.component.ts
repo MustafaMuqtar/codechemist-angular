@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedDataService } from 'src/app/Services/shared-data.service';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 
 @Component({
   selector: 'app-lesson-edit',
@@ -10,15 +10,15 @@ import { SharedDataService } from 'src/app/Services/shared-data.service';
 export class LessonEditComponent {
 
 
-  constructor(private sharedDataService: SharedDataService,private router: Router){}
+  constructor(private authService: AuthenticationServiceService,private router: Router){}
 
   ngOnInit(): void {
 
 
-    if (!this.sharedDataService.user) {
-       this.router.navigate(['/'])
+    if (!this.authService.isAdmin) {
+      this.router.navigate(['/'])
 
-    }
+   }
 
   }
 }

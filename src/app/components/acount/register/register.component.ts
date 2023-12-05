@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Register } from 'src/app/models/register';
 import { JwtAuth } from 'src/app/models/jwtAuth';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
-import { SharedDataService } from 'src/app/Services/shared-data.service';
 
 
 @Component({
@@ -16,10 +15,10 @@ export class RegisterComponent implements OnInit {
   registerDto = new Register();
   jwtDto = new JwtAuth();
 
-  constructor(private authService: AuthenticationServiceService, private router: Router, private sharedDataService: SharedDataService) { }
+  constructor(private authService: AuthenticationServiceService, private router: Router) { }
   ngOnInit(): void {
 
-    if (!this.sharedDataService.user) {
+    if (!this.authService.isAdmin()) {
       this.router.navigate(['/'])
 
    }

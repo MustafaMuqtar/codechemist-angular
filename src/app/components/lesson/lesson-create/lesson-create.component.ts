@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
-import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
 import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 
 
 
@@ -27,7 +27,7 @@ export class LessonCreateComponent {
 
   constructor(private lessonService: LessonServiceService, private technologyService: TechnologyServiceService, private router: Router,
      private activerouter: ActivatedRoute, private fb: FormBuilder,
-     private sharedDataService: SharedDataService) { }
+     private authService: AuthenticationServiceService) { }
   ngOnInit(): void {
     this.getTechnologyList()
 
@@ -37,7 +37,7 @@ export class LessonCreateComponent {
 
     })
 
-    if (!this.sharedDataService.user) {
+    if (!this.authService.isAdmin()) {
       this.router.navigate(['/'])
 
    }
