@@ -21,22 +21,13 @@ export class AppComponent {
   }
   ngOnInit(): void {
 
-
-    
-
+   
 
 
-
-    // Assuming you have a function to get the JWT, replace this with your actual implementation
-
-
-    this.accesCurrentUSer()
-    if (this.sharedDataService.user) {
-      this.sharedDataService.allowedAccess = true
-    } else if (this.sharedDataService.user) {
+ // this.accesCurrentUSer()
+    if (!this.sharedDataService.user) {
       this.sharedDataService.allowedAccess = false
-
-    }
+    } 
   }
 
   ngAfterContentInit() {
@@ -45,7 +36,6 @@ export class AppComponent {
 
   accesCurrentUSer() {
     this.authService.getCurrentUser(this.sharedDataService.user).subscribe((data) => {
-      console.log(data)
 
 
 

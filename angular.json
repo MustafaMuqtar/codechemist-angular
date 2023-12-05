@@ -13,7 +13,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/codechemist",
+            "allowedCommonJsDependencies": [
+              "pdfjs-dist"
+            ],
+            "outputPath": "../../Backend/codechemist-API/codechemist/wwwroot/AngularBuild",
+            
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

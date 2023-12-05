@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SharedDataService {
 
- public user = localStorage.getItem("token");
- public userRemoved =  localStorage.removeItem("token");
+  user = localStorage.getItem("token");
+// public userRemoved =  localStorage.removeItem("token");
 
 
  public allowedAccess: boolean = false

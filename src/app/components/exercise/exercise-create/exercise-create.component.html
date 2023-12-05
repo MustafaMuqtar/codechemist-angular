@@ -1,0 +1,44 @@
+<div class="container">
+    <form [formGroup]="createForm" enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
+        <div class="mb-4">
+            <label for="exampleFormControlInput1" class="form-label">Subject title </label>
+            <input type="text" class="form-control" placeholder="Name" formControlName="title">
+        </div>
+        <div class="mb-4">
+            <label for="exampleFormControlInput1" class="form-label">Image Upload</label>
+            <input type="file" class="form-control" (change)="onFileSelect($event)" formControlName="content">
+        </div>
+        
+        <div class="btn-group me-5 mb-5"  *ngFor="let technology of technologyList; index as i" >
+                <button class="btn btn-warning dropdown-toggle" type="button" id="mainDropdown" data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside" aria-expanded="false">
+                    {{ technology.title }}
+                  </button>
+                <ul class="dropdown-menu" aria-labelledby="mainDropdown">
+                    <li class="dropdown dropend"  *ngFor="let lesson of technology.technologyLessons; index as ib">
+                        <a class="dropdown-item dropdown-toggle" id="nestedDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" >
+                            {{ lesson.title }}
+                          </a>
+                        <ul class="dropdown-menu" aria-labelledby="nestedDropdown">
+                            <li><a class="dropdown-item"  *ngFor="let subject of lesson.lessonSubjects; index as i">   <span (click)="getSubjectId(subject.id)" class="fs-5 fw-semibold"> {{ subject.title}}</span></a></li>
+                        </ul>
+                    </li>
+                    <!-- End Nested Dropdown -->
+                </ul>
+            </div>
+          
+        <div class="mb-4">
+
+
+            <button type="submit" class="btn btn-warning">
+                <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
+                        aria-hidden="true"></span>
+                    Ading...</span>
+                <span *ngIf="!isCreating"> Submit</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+

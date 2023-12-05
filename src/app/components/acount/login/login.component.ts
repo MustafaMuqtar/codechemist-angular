@@ -18,16 +18,25 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthenticationServiceService, private router: Router) { }
   ngOnInit(): void {
 
+
   }
+
 
   loginUser(loginDto: Login) {
     this.authService.login(loginDto).subscribe((jwtDto) => {
-     
-     if (jwtDto) {
-      localStorage.setItem("token", jwtDto.token);
-      this.router.navigate(['/'])
 
-     }
+
+      if (jwtDto) {
+        console.log("dfd")
+        localStorage.setItem("token", jwtDto.token);
+
+
+        this.router.navigate(['/'])
+        window.location.reload();
+
+      }
     });
   }
+
+
 }

@@ -1,11 +1,11 @@
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseService } from 'src/app/Services/exercise.service';
-import { LessonService } from 'src/app/Services/lessonService';
+import { LessonServiceService } from 'src/app/Services/lesson-service.service';
 import { SharedDataService } from 'src/app/Services/shared-data.service';
-import { SubjectService } from 'src/app/Services/subjectService';
-import { technologyService } from 'src/app/Services/technologyService';
-import { ITechnologyDetails } from 'src/app/models/technology';
+import { SubjectServiceService } from 'src/app/Services/subject-service.service';
+import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
 
 @Component({
@@ -18,19 +18,19 @@ export class TechnologyDetailComponent implements OnInit {
   technology: any;
 
   //
-
+  hideButton = false;
 
   player!: any;
 
   qualityLevels: any;
 
 
-  constructor(private technologyService: technologyService, private subjectService: SubjectService,private lessonService: LessonService,
+  constructor(private technologyService: TechnologyServiceService, private subjectService: SubjectServiceService, private lessonService: LessonServiceService,
     private exerciseService: ExerciseService, private route: ActivatedRoute, private router: Router,
     private sharedDataService: SharedDataService
   ) { }
 
-  
+
 
   visibleIndex = -1;
 
@@ -54,45 +54,41 @@ export class TechnologyDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.technology = this.route.snapshot.paramMap.get('id')
-    this.technology && this.technologyService.getTechnologyById(  this.technology).subscribe((result) => {
+    this.technology && this.technologyService.getTechnologyById(this.technology).subscribe((result) => {
       this.technology = result;
-      console.log(result)
     })
     if (!this.sharedDataService.user) {
       this.router.navigate(['/'])
 
-   }
+    }
   }
 
-  deleteSubjectById(id : number) {
+  deleteSubjectById(id: number) {
     this.subjectService.deleteSubject(id).subscribe((data) => {
-      console.log(data)
       if (data == null) {
         this.router.navigate([''])
 
       }
-    }) 
+    })
 
   }
 
-  deleteLessonById(id : number) {
+  deleteLessonById(id: number) {
     this.lessonService.deleteLesson(id).subscribe((data) => {
-      console.log(data)
       if (data == null) {
         this.router.navigate([''])
 
       }
-    }) 
+    })
 
   }
-  deleteExerciseById(id : number) {
+  deleteExerciseById(id: number) {
     this.exerciseService.deleteExercise(id).subscribe((data) => {
-      console.log(data)
       if (data == null) {
         this.router.navigate([''])
 
       }
-    }) 
+    })
 
   }
 

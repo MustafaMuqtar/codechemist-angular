@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { LessonService } from 'src/app/Services/lessonService';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ITechnology } from 'src/app/models/technology';
-import { technologyService } from 'src/app/Services/technologyService';
+import { IGetTechnology } from 'src/app/models/ICourseInterface';
 import { SharedDataService } from 'src/app/Services/shared-data.service';
+import { LessonServiceService } from 'src/app/Services/lesson-service.service';
+import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 
 
 
@@ -18,14 +18,14 @@ export class LessonCreateComponent {
 
   
   public form!: FormGroup;
-  technologyList: ITechnology[] = [];
+  technologyList: IGetTechnology[] = [];
   technologyId: number[] =[]
   technologyName: null= null;
   isCreating: boolean = false
 
  
 
-  constructor(private lessonService: LessonService, private technologyService: technologyService, private router: Router,
+  constructor(private lessonService: LessonServiceService, private technologyService: TechnologyServiceService, private router: Router,
      private activerouter: ActivatedRoute, private fb: FormBuilder,
      private sharedDataService: SharedDataService) { }
   ngOnInit(): void {
@@ -72,7 +72,6 @@ export class LessonCreateComponent {
 
     getTechnologiId(e: number) {
       this.technologyId.push(e);
-      console.log(this.technologyId)
     }
 
     getTechnologyList() {

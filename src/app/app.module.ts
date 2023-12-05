@@ -20,13 +20,15 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ExerciseComponent } from './components/exercise/exercise/exercise.component';
+import { ExerciseCreateComponent } from './components/exercise/exercise-create/exercise-create.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    NavbarComponent, 
     HomeComponent,
     TechnologyListComponent,
     TechnologyDetailComponent,
@@ -41,6 +43,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     NotfoundComponent,
     FooterComponent,
     VideoPlayerComponent,
+    ExerciseComponent,
+    ExerciseCreateComponent,
 
   ],
   imports: [

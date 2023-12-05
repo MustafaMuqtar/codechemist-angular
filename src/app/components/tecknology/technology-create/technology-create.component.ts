@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { SharedDataService } from 'src/app/Services/shared-data.service';
-import { technologyService } from 'src/app/Services/technologyService';
+import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class TechnologyCreateComponent implements OnInit {
   isCreating: boolean = false
 
 
-  constructor(private technologyService: technologyService, private router: Router, 
+  constructor(private technologyService: TechnologyServiceService, private router: Router, 
   private sharedDataService: SharedDataService, private fb: FormBuilder, private httpClient: HttpClient) { }
   ngOnInit(): void {
 

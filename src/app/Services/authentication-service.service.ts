@@ -19,7 +19,7 @@ export class AuthenticationServiceService {
   currentUseUrl = "Acount/currentUser"
   public jwtToken = localStorage.getItem("token");
   private decodedToken: any | null = null;
- 
+
   public allowedAccess: boolean = false
   constructor(private http: HttpClient) { }
 
@@ -30,22 +30,22 @@ export class AuthenticationServiceService {
     return this.http.post<JwtAuth>(`${environment.apiURL}/${this.loginUrl}`, user);
   }
 
- public getCurrentUser(user: any){
+  public getCurrentUser(user: any) {
 
     localStorage.getItem(user);
 
     return this.http.get(`${environment.apiURL}/${this.currentUseUrl}`,
-        {
-            headers: {
-                Authorization: "Bearer " + user,
-                "x-access-token": user,
-            },
-        }
+      {
+        headers: {
+          Authorization: "Bearer " + user,
+          "x-access-token": user,
+        },
+      }
 
     )
 
   }
- 
+
   getFirstRole(): string | null {
     const roles = this.decodedToken?.['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || [];
     return roles.length > 0 ? roles[0] : null;

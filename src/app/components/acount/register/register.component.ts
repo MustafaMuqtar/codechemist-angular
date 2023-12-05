@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit {
   registerUser(registerDto: Register): void {
     this.authService.register(registerDto).subscribe((jwtDto) => {
       if (jwtDto) {
-    //   this.router.navigate(['/'])
+        console.log(jwtDto)
+      this.router.navigate(['/'])
  
       }
      });

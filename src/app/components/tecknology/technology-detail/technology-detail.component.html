@@ -7,7 +7,7 @@
     </a>
     <ul class="list-unstyled ps-0">
       <li *ngFor="let technologyLesson of technology.technologyLessons; index as i" class="mb-1">
-        <button type="button" class="btn btn-danger  mb-2"
+        <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
           (click)="deleteLessonById(technologyLesson.id)">Danger</button>
 
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -42,7 +42,7 @@
 
           <div class="container text-start  align-items-center ">
             <div class="col ">
-              <button type="button" class="btn btn-danger  mb-2"
+              <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
                 (click)="deleteSubjectById(lessonSubject.id)">Danger</button>
 
               <h1 class="fs-1 fw-semibold">{{ lessonSubject.title }}</h1>
@@ -51,7 +51,7 @@
             </div>
             <div class="col mt-5 ">
               <h1 class=" fs-1 fw-semibold">{{ lessonSubject.subjectsExercises.title }}</h1>
-              <button type="button" class="btn btn-danger  mb-2"
+              <button *ngIf="hideButton" type="button" class="btn btn-danger invisable  mb-2"
                 (click)="deleteExerciseById(lessonSubject.subjectsExercises.id)">Danger</button>
 
               <pdf-viewer [src]="lessonSubject.subjectsExercises.pdf" [render-text]="true" [original-size]="false"

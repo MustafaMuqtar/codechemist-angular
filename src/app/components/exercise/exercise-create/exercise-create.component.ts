@@ -2,27 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ExerciseService } from 'src/app/Services/exercise.service';
 import { SharedDataService } from 'src/app/Services/shared-data.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
 import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
-
-
 @Component({
-  selector: 'app-subject-create',
-  templateUrl: './subject-create.component.html',
-  styleUrls: ['./subject-create.component.css']
+  selector: 'app-exercise-create',
+  templateUrl: './exercise-create.component.html',
+  styleUrls: ['./exercise-create.component.css']
 })
-export class SubjectCreateComponent {
+export class ExerciseCreateComponent {
+
 
   public form!: FormGroup;
   technologyList: IGetTechnology[] = [];
-  lessonId: number[] = []
-  lessonName: null = null;
+  subjectId: number[] = []
+  subjectName: null = null;
   isCreating: boolean = false
 
-  constructor(private technologyService: TechnologyServiceService, private subjectService: SubjectServiceService,
+  constructor(private technologyService: TechnologyServiceService, private exerciseService: ExerciseService,
      private router: Router, private activerouter: ActivatedRoute, 
      private fb: FormBuilder, private httpClient: HttpClient,  private sharedDataService: SharedDataService) { }
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class SubjectCreateComponent {
 
     this.form = this.fb.group({
       title: [''],
-      image: [null],
+      pDFS: [null],
 
 
     })
@@ -47,7 +47,7 @@ export class SubjectCreateComponent {
   createForm = this.fb.group(
     {
       title: '',
-      content: File,
+      pDFS: File,
 
 
     })
@@ -63,16 +63,16 @@ export class SubjectCreateComponent {
   handleProfessorClick(): void {
 
     let formData: any = new FormData();
-    this.lessonId.forEach(function (value) {
-      formData.append("lessonId", value);
+    this.subjectId.forEach(function (value) {
+      formData.append("subjectId", value);
     });
 
     formData.append('title', this.createForm.value.title);
-    formData.append('content', this.file);
+    formData.append('pDF', this.file);
     this.isCreating = true
 
 
-    this.subjectService.postSubject(formData).subscribe((result) => {
+    this.exerciseService.postExercise(formData).subscribe((result) => {
 
       if (result) {
         this.router.navigate([''])
@@ -90,8 +90,8 @@ export class SubjectCreateComponent {
 
   }
 
-  getLessonId(e: number) {
-    this.lessonId.push(e);
+  getSubjectId(e: number) {
+    this.subjectId.push(e);
   }
 
 }

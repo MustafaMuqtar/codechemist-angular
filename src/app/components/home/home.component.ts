@@ -15,7 +15,7 @@ export class HomeComponent {
   constructor(private sharedDataService: SharedDataService,private router: Router){}
 
   ngOnInit(): void {
-    const jwtToken = localStorage.getItem("token");
+   const jwtToken = localStorage.getItem("token");
 
     if (jwtToken) {
       const decodedToken: any = jwtDecode(jwtToken);
@@ -39,7 +39,7 @@ export class HomeComponent {
       console.error('JWT token not found');
     }
 
-    if (this.sharedDataService.user) {
+    if (!this.sharedDataService.user) {
       this.sharedDataService.allowedAccess =true
 
     }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LessonService } from 'src/app/Services/lessonService';
-import { technologyService } from 'src/app/Services/technologyService';
-import { ITechnology } from 'src/app/models/technology';
+import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
 @Component({
   selector: 'app-technology-list',
@@ -11,9 +10,10 @@ import { ITechnology } from 'src/app/models/technology';
 })
 export class TechnologyListComponent implements OnInit{
 
-  technologyList: ITechnology[] = [];
+  technologyList: IGetTechnology[] = [];
+  hideButton =false;
 
-  constructor(private technologyService: technologyService,private router: Router) {
+  constructor(private technologyService: TechnologyServiceService,private router: Router) {
   }
   ngOnInit(): void {
    this.getTechnologyList()
@@ -30,7 +30,7 @@ export class TechnologyListComponent implements OnInit{
   deleteTechnologyById(id : number) {
     this.technologyService.deleteTechnology(id).subscribe((data) => {
       if (data == null) {
-        window.location.reload();
+    //    window.location.reload();
 
       }
     }) 

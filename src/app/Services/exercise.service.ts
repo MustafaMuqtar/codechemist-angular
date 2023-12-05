@@ -1,22 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExerciseService {
 
+  exerciseUrl = "Exercise/"
   constructor(private httpClient: HttpClient) {  }
 
 
-  postLesson( formData: any) {
+  postExercise( formData: any) {
 
-    return this.httpClient.post('https://localhost:7040/api/Exercise/', formData)
-}
+    return this.httpClient.post(`${environment.apiURL}/${this.exerciseUrl}`, formData)
+  }
 
     deleteExercise( id: number) {
 
-    return this.httpClient.delete('https://localhost:7040/api/Exercise/'+ id)
+      return this.httpClient.delete(`${environment.apiURL}/${this.exerciseUrl}` + id)
 }
 
 
