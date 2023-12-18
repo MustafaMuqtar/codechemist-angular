@@ -62,7 +62,7 @@ export class LessonCreateComponent {
 
       this.lessonService.postLesson(formData).subscribe((result) => {
         if (result) {
-          this.router.navigate([''])
+          this.router.navigate(['/technology/detail/1'])
         }
   
       });

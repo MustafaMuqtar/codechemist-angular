@@ -22,16 +22,19 @@ export class AppComponent {
 
 
 
-  this.accesCurrentUSer()
-
   if (this.authService.isAdmin()) {
     console.log('User is an admin');
   }
   else if (this.authService.isMember()) {
-    console.log('User is an mem');
+    console.log('User is an member');
   }
   }
 
+
+  ngAfterOnInit() : void{
+    this.accesCurrentUSer()
+
+  }
 
 
   accesCurrentUSer() {

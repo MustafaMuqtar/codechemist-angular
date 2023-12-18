@@ -45,18 +45,18 @@
               <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
                 (click)="deleteSubjectById(lessonSubject.id)">Danger</button>
 
-              <h1 class="fs-1 fw-semibold">{{ lessonSubject.title }}</h1>
+              <h1 class="fs-1 fw-semibold text-warning">{{ lessonSubject.title }}</h1>
 
               <app-video-player [videoLink]="lessonSubject.content"></app-video-player>
             </div>
-            <div class="col mt-5 ">
-              <h1 class=" fs-1 fw-semibold">{{ lessonSubject.subjectsExercises.title }}</h1>
-              <button *ngIf="hideButton" type="button" class="btn btn-danger invisable  mb-2"
-                (click)="deleteExerciseById(lessonSubject.subjectsExercises.id)">Danger</button>
-
-              <pdf-viewer [src]="lessonSubject.subjectsExercises.pdf" [render-text]="true" [original-size]="false"
-                style="width: 700px; height: 700px"></pdf-viewer>
+            <div class="col mt-5" *ngIf="lessonSubject.subjectsExercises?.pdf && lessonSubject.subjectsExercises?.title">
+              <button *ngIf="hideButton" type="button" class="btn btn-danger invisible mb-2"
+                      (click)="deleteExerciseById(lessonSubject.subjectsExercises.id)">Danger</button>
+            
+              <a class="fs-3 fw-semibold text-decoration-none d-inline-block p-2 mb-2 bg-warning text-dark rounded"
+                 [href]="lessonSubject.subjectsExercises.pdf" target="_blank">{{ lessonSubject.subjectsExercises.title }}</a>
             </div>
+            
 
           </div>
         </div>
@@ -67,3 +67,5 @@
     </div>
   </div>
 </div>
+
+

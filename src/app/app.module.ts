@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ExerciseCreateComponent } from './components/exercise/exercise-create/exercise-create.component';
+import { IndexComponent } from './components/portfolio/index/index.component';
 
 
 
@@ -43,6 +44,7 @@ import { ExerciseCreateComponent } from './components/exercise/exercise-create/e
     FooterComponent,
     VideoPlayerComponent,
     ExerciseCreateComponent,
+    IndexComponent,
 
   ],
   imports: [

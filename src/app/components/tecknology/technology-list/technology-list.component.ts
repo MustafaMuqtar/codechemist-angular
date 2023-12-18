@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
@@ -13,7 +14,7 @@ export class TechnologyListComponent implements OnInit{
   technologyList: IGetTechnology[] = [];
   hideButton =false;
 
-  constructor(private technologyService: TechnologyServiceService,private router: Router) {
+  constructor(private technologyService: TechnologyServiceService,private router: Router,private authService: AuthenticationServiceService) {
   }
   ngOnInit(): void {
    this.getTechnologyList()
@@ -27,12 +28,18 @@ export class TechnologyListComponent implements OnInit{
 
   }
 
+  login() {
+    if (!this.authService.isMember()) {
+      console.log("hej")
+      this.router.navigate(['/login'])
+    }
+  }
   deleteTechnologyById(id : number) {
     this.technologyService.deleteTechnology(id).subscribe((data) => {
       if (data == null) {
       window.location.reload();
 
-      }
+      } 
     }) 
   }
 

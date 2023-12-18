@@ -57,7 +57,7 @@ export class TechnologyDetailComponent implements OnInit {
     this.technology && this.technologyService.getTechnologyById(this.technology).subscribe((result) => {
       this.technology = result;
     })
-    if (!this.authService.isAdmin) {
+    if (!this.authService.isMember()) {
       this.router.navigate(['/'])
 
    }

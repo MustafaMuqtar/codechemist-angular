@@ -75,7 +75,7 @@ export class SubjectCreateComponent {
     this.subjectService.postSubject(formData).subscribe((result) => {
 
       if (result) {
-        this.router.navigate([''])
+        this.router.navigate(['/technology/detail/1'])
       }
 
     });

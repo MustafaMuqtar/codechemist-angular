@@ -75,7 +75,7 @@ export class ExerciseCreateComponent {
     this.exerciseService.postExercise(formData).subscribe((result) => {
 
       if (result) {
-        this.router.navigate([''])
+        this.router.navigate(['/technology/detail/1'])
       }
 
     });
