@@ -14,9 +14,9 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { IndexComponent } from './components/portfolio/index/index.component';
 import { CourseListComponent } from './components/course/course-list/course-list.component';
-import { CourseCreateComponent } from './components/course/course-create/course-create.component';
 import { CourseEditComponent } from './components/course/course-edit/course-edit.component';
 import { CourseDetailComponent } from './components/course/course-detail/course-detail.component';
+import { CourseCreateComponent } from './components/course/course-create/course-create.component';
 
 
 

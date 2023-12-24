@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
 import { CourseServiceService } from 'src/app/Services/course-service.service';
-import { IGetTechnology } from 'src/app/models/ICourseInterface';
+import { IGetCourse } from 'src/app/models/IHTTPHGet';
 
 
 
@@ -17,7 +17,7 @@ import { IGetTechnology } from 'src/app/models/ICourseInterface';
 export class SubjectCreateComponent {
 
   public form!: FormGroup;
-  technologyList: IGetTechnology[] = [];
+  courseList: IGetCourse[] = [];
   lessonId: number[] = []
   lessonName: null = null;
   isCreating: boolean = false
@@ -31,7 +31,7 @@ export class SubjectCreateComponent {
       this.router.navigate(['/'])
 
    }
-    this.getTechnologyList()
+    this.getCourseList()
 
     this.form = this.fb.group({
       title: [''],
@@ -53,9 +53,9 @@ export class SubjectCreateComponent {
     })
 
  
-  getTechnologyList() {
-    this.courseService.getAlltechnologies().subscribe((data) => {
-      this.technologyList = data
+  getCourseList() {
+    this.courseService.getAllCourses().subscribe((data) => {
+      this.courseList = data
     })
 
 

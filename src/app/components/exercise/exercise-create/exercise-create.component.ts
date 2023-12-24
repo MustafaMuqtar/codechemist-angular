@@ -3,10 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
+import { CourseServiceService } from 'src/app/Services/course-service.service';
 import { ExerciseService } from 'src/app/Services/exercise.service';
-import { SubjectServiceService } from 'src/app/Services/subject-service.service';
-import { TechnologyServiceService } from 'src/app/Services/course-service.service';
-import { IGetTechnology } from 'src/app/models/ICourseInterface';
+import { IGetCourse } from 'src/app/models/IHTTPHGet';
 
 @Component({
   selector: 'app-exercise-create',
@@ -17,12 +16,12 @@ export class ExerciseCreateComponent {
 
 
   public form!: FormGroup;
-  technologyList: IGetTechnology[] = [];
+  courseList: IGetCourse[] = [];
   subjectId: number[] = []
   subjectName: null = null;
   isCreating: boolean = false
 
-  constructor(private technologyService: TechnologyServiceService, private exerciseService: ExerciseService,
+  constructor(private courseService: CourseServiceService, private exerciseService: ExerciseService,
      private router: Router, private activerouter: ActivatedRoute, 
      private fb: FormBuilder, private httpClient: HttpClient,  private authService: AuthenticationServiceService) { }
   ngOnInit(): void {
@@ -31,7 +30,7 @@ export class ExerciseCreateComponent {
       this.router.navigate(['/'])
 
    }
-    this.getTechnologyList()
+    this.getCourseList()
 
     this.form = this.fb.group({
       title: [''],
@@ -53,9 +52,9 @@ export class ExerciseCreateComponent {
     })
 
  
-  getTechnologyList() {
-    this.technologyService.getAlltechnologies().subscribe((data) => {
-      this.technologyList = data
+  getCourseList() {
+    this.courseService.getAllCourses().subscribe((data) => {
+      this.courseList = data
     })
 
 
@@ -68,7 +67,7 @@ export class ExerciseCreateComponent {
     });
 
     formData.append('title', this.createForm.value.title);
-    formData.append('pDF', this.file);
+    formData.append('pdf', this.file);
     this.isCreating = true
 
 

@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="createForm" enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
+  <form  enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
     <div class="mb-4">
       <label for="exampleFormControlInput1" class="form-label">Lesson name
       </label>
@@ -10,8 +10,8 @@
         Action
       </button>
       <ul class="dropdown-menu" >
-      <div *ngFor="let technology of technologyList; index as i">
-        <li (click)="getTechnologiId(technology.id)"><a class="dropdown-item" >{{technology.title}}</a></li>
+      <div *ngFor="let course of courseList; index as i">
+        <li (click)="getCourseId(course.id)"><a class="dropdown-item" >{{course.title}}</a></li>
       </div>
       </ul>
     </div>

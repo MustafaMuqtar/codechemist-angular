@@ -4,8 +4,7 @@ import { AuthenticationServiceService } from 'src/app/Services/authentication-se
 import { ExerciseService } from 'src/app/Services/exercise.service';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
-import { TechnologyServiceService } from 'src/app/Services/course-service.service';
-import { IGetTechnology } from 'src/app/models/ICourseInterface';
+import { CourseServiceService } from 'src/app/Services/course-service.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ import { IGetTechnology } from 'src/app/models/ICourseInterface';
 })
 export class CourseDetailComponent implements OnInit {
 
-  technology: any;
+  course: any;
 
   //
   hideButton = false;
@@ -25,7 +24,7 @@ export class CourseDetailComponent implements OnInit {
   qualityLevels: any;
 
 
-  constructor(private technologyService: TechnologyServiceService, private subjectService: SubjectServiceService, private lessonService: LessonServiceService,
+  constructor(private courseService: CourseServiceService, private subjectService: SubjectServiceService, private lessonService: LessonServiceService,
     private exerciseService: ExerciseService, private route: ActivatedRoute, private router: Router,
     private authService: AuthenticationServiceService
   ) { }
@@ -53,9 +52,9 @@ export class CourseDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.technology = this.route.snapshot.paramMap.get('id')
-    this.technology && this.technologyService.getTechnologyById(this.technology).subscribe((result) => {
-      this.technology = result;
+    this.course = this.route.snapshot.paramMap.get('id')
+    this.course && this.courseService.getCourseById(this.course).subscribe((result) => {
+      this.course = result;
     })
     if (!this.authService.isMember()) {
       this.router.navigate(['/'])

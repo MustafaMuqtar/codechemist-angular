@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IGetTechnology } from 'src/app/models/ICourseInterface';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
-import { CourseServiceService, TechnologyServiceService } from 'src/app/Services/course-service.service';
+import { CourseServiceService } from 'src/app/Services/course-service.service';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
+import { IGetCourse } from 'src/app/models/IHTTPHGet';
 
 
 
@@ -18,9 +18,9 @@ export class LessonCreateComponent {
 
   
   public form!: FormGroup;
-  technologyList: IGetTechnology[] = [];
-  technologyId: number[] =[]
-  technologyName: null= null;
+  courseList: IGetCourse[] = [];
+  courseId: number[] =[]
+  courseName: null= null;
   isCreating: boolean = false
 
  
@@ -29,7 +29,7 @@ export class LessonCreateComponent {
      private activerouter: ActivatedRoute, private fb: FormBuilder,
      private authService: AuthenticationServiceService) { }
   ngOnInit(): void {
-    this.getTechnologyList()
+    this.getCourseList()
 
     this.form = this.fb.group({
       title: [''],
@@ -52,7 +52,7 @@ export class LessonCreateComponent {
     handleProfessorClick(): void {
 
       let formData: any = new FormData();
-      this.technologyId.forEach(function (value) {
+      this.courseId.forEach(function (value) {
         formData.append("technologyId", value);
       });
   
@@ -70,13 +70,13 @@ export class LessonCreateComponent {
   
     }
 
-    getTechnologiId(e: number) {
-      this.technologyId.push(e);
+    getCourseId(e: number) {
+      this.courseId.push(e);
     }
 
-    getTechnologyList() {
-      this.courseService.getAlltechnologies().subscribe((data ) => {
-        this.technologyList =data
+    getCourseList() {
+      this.courseService.getAllCourses().subscribe((data ) => {
+        this.courseList =data
       })
   
   

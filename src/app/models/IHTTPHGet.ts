@@ -1,9 +1,9 @@
-export interface ICourse {
+export interface IGetCourse {
   id: number
   title: string
   image: string
-  description:string
-  technologyLessons: [
+  description: string
+  courseSubjectLessons: [
     {
       id: number
       title: string
@@ -22,9 +22,4 @@ export interface ICourse {
       ]
     }
   ]
-}
-
-
-export interface ITechnologyDetails {
-  [id: number]: ICourse; //Or string instead of number
 }

@@ -1,28 +1,28 @@
 <div class="d-flex flex-row mb-3  ">
   <div class="flex-shrink-0 p-3 " style="width: 280px">
     <a class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom border-warning">
-      <img [src]="technology.image" width="50" height="50" class="bi me-2" alt="..." />
+      <img [src]="course.image" width="50" height="50" class="bi me-2" alt="..." />
 
-      <span class="fs-4 fw-semibold text-warning">{{ technology.title }} </span>
+      <span class="fs-4 fw-semibold text-warning">{{ course.title }} </span>
     </a>
     <ul class="list-unstyled ps-0">
-      <li *ngFor="let technologyLesson of technology.technologyLessons; index as i" class="mb-1">
+      <li *ngFor="let courseSubjectLessons of course.courseSubjectLessons; index as i" class="mb-1">
         <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
-          (click)="deleteLessonById(technologyLesson.id)">Danger</button>
+          (click)="deleteLessonById(courseSubjectLessons.id)">Danger</button>
 
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
           data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          <span class="fs-5 fw-semibold text-warning" (click)="showSubItem(i)"> {{ technologyLesson.title }}</span>
+          <span class="fs-5 fw-semibold text-warning" (click)="showSubItem(i)"> {{ courseSubjectLessons.title }}</span>
         </button>
         <div *ngIf="visibleIndex === i">
-          <div *ngFor="let lessonSubject of technologyLesson.lessonSubjects; index as b" class="collapse show"
+          <div *ngFor="let courseLesson of courseSubjectLessons.courseLessonVMs; index as b" class="collapse show"
             id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ms-5 small">
 
               <li>
                 <a role="button"
                   class=" fs-6 fw-semibold link-body-emphasis d-inline-flex text-decoration-none rounded pe-auto mb-4"
-                  (click)="showSubItem2(lessonSubject.id)">{{ lessonSubject.title }}</a>
+                  (click)="showSubItem2(courseLesson.id)">{{ courseLesson.title }}</a>
               </li>
 
             </ul>
@@ -36,25 +36,25 @@
   </div>
 
   <div class="mt-5 ms-3">
-    <div *ngFor="let technologyLesson of technology.technologyLessons; index as i">
-      <div *ngFor="let lessonSubject of technologyLesson.lessonSubjects; index as b">
-        <div *ngIf="visibleIndex2 === lessonSubject.id">
+    <div *ngFor="let courseSubjectLessons of course.courseSubjectLessons;  index as i">
+      <div *ngFor="let courseLesson of courseSubjectLessons.courseLessonVMs;  index as b">
+        <div *ngIf="visibleIndex2 === courseLesson.id">
 
           <div class="container text-start  align-items-center ">
             <div class="col ">
               <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
-                (click)="deleteSubjectById(lessonSubject.id)">Danger</button>
+                (click)="deleteSubjectById(courseLesson.id)">Danger</button>
 
-              <h1 class="fs-1 fw-semibold text-warning">{{ lessonSubject.title }}</h1>
+              <h1 class="fs-1 fw-semibold text-warning">{{ courseLesson.title }}</h1>
 
-              <app-video-player [videoLink]="lessonSubject.content"></app-video-player>
+              <app-video-player [videoLink]="courseLesson.content"></app-video-player>
             </div>
-            <div class="col mt-5" *ngIf="lessonSubject.subjectsExercises?.pdf && lessonSubject.subjectsExercises?.title">
+            <div class="col mt-5" *ngIf="courseLesson.subjectsExercises?.pdf && courseLesson.subjectsExercises?.title">
               <button *ngIf="hideButton" type="button" class="btn btn-danger invisible mb-2"
-                      (click)="deleteExerciseById(lessonSubject.subjectsExercises.id)">Danger</button>
+                      (click)="deleteExerciseById(courseLesson.subjectsExercises.id)">Danger</button>
             
               <a class="fs-3 fw-semibold text-decoration-none d-inline-block p-2 mb-2 bg-warning text-dark rounded"
-                 [href]="lessonSubject.subjectsExercises.pdf" target="_blank">{{ lessonSubject.subjectsExercises.title }}</a>
+                 [href]="courseLesson.subjectsExercises.pdf" target="_blank">{{ courseLesson.subjectsExercises.title }}</a>
             </div>
             
 

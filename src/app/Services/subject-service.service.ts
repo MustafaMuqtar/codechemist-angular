@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from 'src/environments/environment';
+import { IPostSubject } from "../models/IHTTPHPost";
 
 
 @Injectable({
@@ -8,20 +9,20 @@ import { environment } from 'src/environments/environment';
 })
 export class SubjectServiceService {
 
-  subjectUrl ="Subject/"
+  subjectUrl = "Subject/"
 
   constructor(private httpClient: HttpClient) {
 
 
   }
 
-  postSubject( formData: any) {
+  postSubject(postSubject: IPostSubject) {
 
-      return this.httpClient.post(`${environment.apiURL}/${this.subjectUrl}`, formData)
+    return this.httpClient.post(`${environment.apiURL}/${this.subjectUrl}`, postSubject)
   }
 
-  deleteSubject( id: number) {
+  deleteSubject(id: number) {
 
-      return this.httpClient.delete(`${environment.apiURL}/${this.subjectUrl}` + id)
+    return this.httpClient.delete(`${environment.apiURL}/${this.subjectUrl}` + id)
   }
 }

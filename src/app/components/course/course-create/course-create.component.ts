@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
-import { TechnologyServiceService } from 'src/app/Services/course-service.service';
+import { CourseServiceService } from 'src/app/Services/course-service.service';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class CourseCreateComponent implements OnInit {
   isCreating: boolean = false
 
 
-  constructor(private technologyService: TechnologyServiceService, private router: Router, 
+  constructor(private courseService: CourseServiceService, private router: Router, 
     private authService: AuthenticationServiceService, private fb: FormBuilder, private httpClient: HttpClient) { }
   ngOnInit(): void {
 
@@ -55,7 +55,7 @@ export class CourseCreateComponent implements OnInit {
 
     this.isCreating = true
 
-    this.technologyService.postTechnology(formData).subscribe((result) => {
+    this.courseService.postCourse(formData).subscribe((result) => {
       if (result) {
         this.router.navigate([''])
       }

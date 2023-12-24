@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { IGetTechnology, ICreateTechnology } from "../models/ICourseInterface";
 import { environment } from 'src/environments/environment';
+import { IGetCourse } from "../models/IHTTPHGet";
+import { IPostCourse } from "../models/IHTTPHPost";
 
 
 @Injectable({
@@ -9,26 +10,26 @@ import { environment } from 'src/environments/environment';
 })
 export class CourseServiceService {
 
-  technologyUrl = "Technology/"
+  courseUrl = "Course/"
   constructor(private httpClient: HttpClient) { }
 
-  getAlltechnologies() {
+  getAllCourses() {
 
-      return this.httpClient.get<IGetTechnology[]>(`${environment.apiURL}/${this.technologyUrl}`)
+    return this.httpClient.get<IGetCourse[]>(`${environment.apiURL}/${this.courseUrl}`)
   }
 
-  getTechnologyById(id: any) {
+  getCourseById(id: number) {
 
-      return this.httpClient.get<IGetTechnology>(`${environment.apiURL}/${this.technologyUrl}` + id)
+    return this.httpClient.get<IGetCourse>(`${environment.apiURL}/${this.courseUrl}` + id)
   }
 
-  postTechnology(formData: any) {
+  postCourse(postCourse: IPostCourse) {
 
-      return this.httpClient.post(`${environment.apiURL}/${this.technologyUrl}`, formData)
+    return this.httpClient.post(`${environment.apiURL}/${this.courseUrl}`, postCourse)
   }
-  deleteTechnology(id: number) {
+  deleteCourse(id: number) {
 
-      return this.httpClient.delete(`${environment.apiURL}/${this.technologyUrl}` + id)
+    return this.httpClient.delete(`${environment.apiURL}/${this.courseUrl}` + id)
   }
 
 }
