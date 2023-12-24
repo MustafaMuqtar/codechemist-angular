@@ -1,20 +1,21 @@
-export interface ITechnology {
+export interface ICourse {
   id: number
   title: string
   image: string
+  description:string
   technologyLessons: [
     {
       id: number
       title: string
-      lessonSubject: [
+      courseLessonVMs: [
         {
           id: number
           title: string
-          content: string
+          lessonVideo: string
           subjectsExercises: {
             id: number
             title: string
-            PDF: string
+            pdf: string
           }
         }
 
@@ -25,5 +26,5 @@ export interface ITechnology {
 
 
 export interface ITechnologyDetails {
-  [id: number]: ITechnology; //Or string instead of number
+  [id: number]: ICourse; //Or string instead of number
 }

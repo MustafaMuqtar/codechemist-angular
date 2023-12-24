@@ -3,15 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
-import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { TechnologyServiceService } from 'src/app/Services/course-service.service';
 
 
 @Component({
-  selector: 'app-technology-create',
-  templateUrl: './technology-create.component.html',
-  styleUrls: ['./technology-create.component.css']
+  selector: 'app-course-create',
+  templateUrl: './course-create.component.html',
+  styleUrls: ['./course-create.component.css']
 })
-export class TechnologyCreateComponent implements OnInit {
+export class CourseCreateComponent implements OnInit {
 
 
   public form!: FormGroup;

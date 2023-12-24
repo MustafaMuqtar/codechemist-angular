@@ -5,27 +5,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-  
-       <a class="navbar-brand col-lg-3 me-0 fs-3 link-light text-warning" href="#"> <img
-        src="./assets/images/codechemist.svg"   width="72" height="57" alt="P-Fosr" /> Codechemist</a>
+
+      <a class="navbar-brand col-lg-3 me-0 fs-3 link-light text-warning" href="#"> <img
+          src="./assets/images/codechemist.svg" width="72" height="57" alt="P-Fosr" /> Codechemist</a>
 
 
       <ul class="navbar-nav col-lg-6 justify-content-lg-center">
         <li class="nav-item ">
-          <a class="nav-link link-light fs-3 "routerLink="technology">Kurser</a>
+          <a class="nav-link link-light fs-3 " routerLink="technology">Kurser</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link link-light fs-3" routerLink="portfolio">Portfolio</a>
-        </li>
-           <li class="nav-item">
           <a class="nav-link  disabled fs-3" aria-disabled="true">Studio</a>
         </li>
-         </ul>
+      </ul>
       <div class="col-md-3 text-end">
-        <button *ngIf="!hideButton" type="button" routerLink="login" class="fs-5 btn btn-outline-warning me-2">Login</button>
-        <button (click)="lougout()" *ngIf="hideButton" type="button" routerLink="login"  class="fs-5 btn btn-outline-warning me-2">Logout</button>
+        <button *ngIf="!hideButton" type="button" routerLink="login"
+          class="fs-5 btn btn-outline-warning me-2">Login</button>
+        <button (click)="lougout()" *ngIf="hideButton" type="button" routerLink="login"
+          class="fs-5 btn btn-outline-warning me-2">Logout</button>
         <button *ngIf="hideRegister" type="button" routerLink="register" class="fs-5 btn btn-warning">Sign-up</button>
       </div>
     </div>
   </div>
-</nav> 
+</nav>

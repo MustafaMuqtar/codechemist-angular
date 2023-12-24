@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "../components/home/home.component";
-import { TechnologyDetailComponent } from "../components/tecknology/technology-detail/technology-detail.component";
-import { TechnologyListComponent } from "../components/tecknology/technology-list/technology-list.component";
-import { TechnologyCreateComponent } from "../components/tecknology/technology-create/technology-create.component";
-import { TechnologyEditComponent } from "../components/tecknology/technology-edit/technology-edit.component";
+import { CourseDetailComponent } from "../components/course/course-detail/course-detail.component";
+import { CourseListComponent } from "../components/course/course-list/course-list.component";
+import { CourseCreateComponent } from "../components/course/course-create/course-create.component";
+import { CourseEditComponent } from "../components/course/course-edit/course-edit.component";
 import { LessonEditComponent } from "../components/lesson/lesson-edit/lesson-edit.component";
 import { SubjectCreateComponent } from "../components/subject/subject-create/subject-create.component";
 import { SubjectEditComponent } from "../components/subject/subject-edit/subject-edit.component";
@@ -23,10 +23,10 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
    { path: 'login', component: LoginComponent },
    { path: 'register', component: RegisterComponent },
-    { path: 'technology', component: TechnologyListComponent },
-   { path: 'technology/create', component: TechnologyCreateComponent },
-    { path: 'technology/edit/:id', component: TechnologyEditComponent },
-   { path: 'technology/detail/:id', component: TechnologyDetailComponent },
+    { path: 'course', component: CourseListComponent },
+   { path: 'course/create', component: CourseCreateComponent },
+    { path: 'course/edit/:id', component: CourseEditComponent },
+   { path: 'course/detail/:id', component: CourseDetailComponent },
    { path: 'lesson/create', component: LessonCreateComponent },
    { path: 'exercise/create', component: ExerciseCreateComponent },
     { path: 'lesson/edit/:id', component: LessonEditComponent },

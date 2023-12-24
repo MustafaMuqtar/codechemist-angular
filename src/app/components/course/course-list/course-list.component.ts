@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
-import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { CourseServiceService } from 'src/app/Services/course-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
 @Component({
-  selector: 'app-technology-list',
-  templateUrl: './technology-list.component.html',
-  styleUrls: ['./technology-list.component.css']
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.css']
 })
-export class TechnologyListComponent implements OnInit{
+export class CourseListComponent implements OnInit{
 
   technologyList: IGetTechnology[] = [];
   hideButton =false;
 
-  constructor(private technologyService: TechnologyServiceService,private router: Router,private authService: AuthenticationServiceService) {
+  constructor(private courseService: CourseServiceService,private router: Router,private authService: AuthenticationServiceService) {
   }
   ngOnInit(): void {
    this.getTechnologyList()
   }
 
   getTechnologyList() {
-    this.technologyService.getAlltechnologies().subscribe((data ) => {
+    this.courseService.getAlltechnologies().subscribe((data ) => {
       this.technologyList =data
     })
 
@@ -35,7 +35,7 @@ export class TechnologyListComponent implements OnInit{
     }
   }
   deleteTechnologyById(id : number) {
-    this.technologyService.deleteTechnology(id).subscribe((data) => {
+    this.courseService.deleteTechnology(id).subscribe((data) => {
       if (data == null) {
       window.location.reload();
 

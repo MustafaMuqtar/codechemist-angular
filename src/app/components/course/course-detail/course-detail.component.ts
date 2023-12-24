@@ -4,16 +4,16 @@ import { AuthenticationServiceService } from 'src/app/Services/authentication-se
 import { ExerciseService } from 'src/app/Services/exercise.service';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
-import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { TechnologyServiceService } from 'src/app/Services/course-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
 
 @Component({
-  selector: 'app-technology-detail',
-  templateUrl: './technology-detail.component.html',
-  styleUrls: ['./technology-detail.component.css']
+  selector: 'app-course-detail',
+  templateUrl: './course-detail.component.html',
+  styleUrls: ['./course-detail.component.css']
 })
-export class TechnologyDetailComponent implements OnInit {
+export class CourseDetailComponent implements OnInit {
 
   technology: any;
 

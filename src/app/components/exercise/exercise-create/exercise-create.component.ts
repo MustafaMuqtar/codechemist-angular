@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { ExerciseService } from 'src/app/Services/exercise.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
-import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { TechnologyServiceService } from 'src/app/Services/course-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
 @Component({

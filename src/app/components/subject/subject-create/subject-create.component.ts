@@ -4,7 +4,7 @@ import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
-import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { CourseServiceService } from 'src/app/Services/course-service.service';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 
 
@@ -22,7 +22,7 @@ export class SubjectCreateComponent {
   lessonName: null = null;
   isCreating: boolean = false
 
-  constructor(private technologyService: TechnologyServiceService, private subjectService: SubjectServiceService,
+  constructor(private courseService: CourseServiceService, private subjectService: SubjectServiceService,
      private router: Router, private activerouter: ActivatedRoute, 
      private fb: FormBuilder, private httpClient: HttpClient,  private authService: AuthenticationServiceService) { }
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class SubjectCreateComponent {
 
  
   getTechnologyList() {
-    this.technologyService.getAlltechnologies().subscribe((data) => {
+    this.courseService.getAlltechnologies().subscribe((data) => {
       this.technologyList = data
     })
 
@@ -75,7 +75,7 @@ export class SubjectCreateComponent {
     this.subjectService.postSubject(formData).subscribe((result) => {
 
       if (result) {
-        this.router.navigate(['/technology/detail/1'])
+        this.router.navigate(['/course/detail/1'])
       }
 
     });

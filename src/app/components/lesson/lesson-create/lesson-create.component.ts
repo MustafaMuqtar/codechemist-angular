@@ -3,7 +3,7 @@ import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IGetTechnology } from 'src/app/models/ICourseInterface';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
-import { TechnologyServiceService } from 'src/app/Services/technology-service.service';
+import { CourseServiceService, TechnologyServiceService } from 'src/app/Services/course-service.service';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 
 
@@ -25,7 +25,7 @@ export class LessonCreateComponent {
 
  
 
-  constructor(private lessonService: LessonServiceService, private technologyService: TechnologyServiceService, private router: Router,
+  constructor(private lessonService: LessonServiceService, private courseService: CourseServiceService, private router: Router,
      private activerouter: ActivatedRoute, private fb: FormBuilder,
      private authService: AuthenticationServiceService) { }
   ngOnInit(): void {
@@ -62,7 +62,7 @@ export class LessonCreateComponent {
 
       this.lessonService.postLesson(formData).subscribe((result) => {
         if (result) {
-          this.router.navigate(['/technology/detail/1'])
+          this.router.navigate(['/course/detail/1'])
         }
   
       });
@@ -75,7 +75,7 @@ export class LessonCreateComponent {
     }
 
     getTechnologyList() {
-      this.technologyService.getAlltechnologies().subscribe((data ) => {
+      this.courseService.getAlltechnologies().subscribe((data ) => {
         this.technologyList =data
       })
   
