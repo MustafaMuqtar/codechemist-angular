@@ -16,9 +16,9 @@ export class LessonServiceService {
   }
 
 
-  postLesson(postLesson: IPostLesson) {
+  postLesson(postLessonData: FormData | IPostLesson) {
 
-    return this.httpClient.post(`${environment.apiURL}/${this.lessonUrl}`, postLesson)
+    return this.httpClient.post(`${environment.apiURL}/${this.lessonUrl}`, postLessonData)
   }
 
   deleteLesson(id: number) {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LessonServiceService } from 'src/app/Services/lesson-service.service';
 import { CourseServiceService } from 'src/app/Services/course-service.service';
@@ -15,72 +15,80 @@ import { IGetCourse } from 'src/app/models/IHTTPHGet';
 })
 export class LessonCreateComponent {
 
-
-  
   public form!: FormGroup;
-  courseList: IGetCourse[] = [];
-  courseId: number[] =[]
-  courseName: null= null;
-  isCreating: boolean = false
-
- 
-
-  constructor(private lessonService: LessonServiceService, private courseService: CourseServiceService, private router: Router,
-     private activerouter: ActivatedRoute, private fb: FormBuilder,
-     private authService: AuthenticationServiceService) { }
+  public subjectId: number[] = [];
+  public isCreating = false;
+  public courseList: IGetCourse[] = [];
+  public selectedCourseTitle: string | null = null;
+  file: any;
   ngOnInit(): void {
-    this.getCourseList()
-
     this.form = this.fb.group({
-      title: [''],
-  
-
-    })
+      title: ['', Validators.required],
+      lessonVideo: [null, Validators.required],
+    });
+    this.getCourseList();
 
     if (!this.authService.isAdmin()) {
-      this.router.navigate(['/'])
-
-   }
+      this.router.navigate(['/']);
+    }
   }
+  constructor(
+    private courseService: CourseServiceService,
+    private lessonService: LessonServiceService,
+    private router: Router,
+    private authService: AuthenticationServiceService,
+    private fb: FormBuilder
+  ) {}
 
-  createForm = this.fb.group(
-    {
-      title: '',
 
-    })
-
-    handleProfessorClick(): void {
-
-      let formData: any = new FormData();
-      this.courseId.forEach(function (value) {
-        formData.append("technologyId", value);
+  submittingForm(): void {
+    this.form.markAllAsTouched();
+  
+    if (this.form.valid) {
+      let formData: FormData = new FormData();
+      this.subjectId.forEach(value => {
+        formData.append('subjectId', value.toString());
       });
   
-      formData.append('title', this.createForm.value.title);
+      formData.append('title', this.form.value.title);
+      formData.append('lessonVideo', this.file, this.form.value.lessonVideo);
   
-      this.isCreating = true
-
+      this.isCreating = true;
+  
       this.lessonService.postLesson(formData).subscribe((result) => {
         if (result) {
-          this.router.navigate(['/course/detail/1'])
+          this.router.navigate(['']);
         }
-  
       });
-  
-  
     }
+  }
+  
 
-    getCourseId(e: number) {
-      this.courseId.push(e);
-    }
+  onFileSelect(event: any) {
+    this.file = event.target.files[0];
+  }
 
-    getCourseList() {
-      this.courseService.getAllCourses().subscribe((data ) => {
-        this.courseList =data
-      })
+  getCourseId(courseId: number, courseTitle: string): void {
+    this.subjectId.push(courseId);
+    this.selectedCourseTitle = courseTitle;
+  }
   
   
-    }
+  getCourseList() {
+    this.courseService.getAllCourses().subscribe(
+      (data) => {
+        this.courseList = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching courses:', error);
+      }
+    );
+    
 
+
+  }
 
 }
+
+

@@ -22,11 +22,14 @@ export class CourseServiceService {
 
     return this.httpClient.get<IGetCourse>(`${environment.apiURL}/${this.courseUrl}` + id)
   }
-
-  postCourse(postCourse: IPostCourse) {
-
-    return this.httpClient.post(`${environment.apiURL}/${this.courseUrl}`, postCourse)
+  postCourse(courseData: FormData | IPostCourse) {
+    return this.httpClient.post(`${environment.apiURL}/${this.courseUrl}`, courseData);
   }
+
+  editCourse(id: number, courseData: FormData | IPostCourse) {
+    return this.httpClient.put(`${environment.apiURL}/${this.courseUrl}` + id, courseData);
+  }
+  
   deleteCourse(id: number) {
 
     return this.httpClient.delete(`${environment.apiURL}/${this.courseUrl}` + id)

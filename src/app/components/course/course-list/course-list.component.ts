@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { CourseServiceService } from 'src/app/Services/course-service.service';
 import { IGetCourse } from 'src/app/models/IHTTPHGet';
+import log from 'video.js/dist/types/utils/log';
 
 @Component({
   selector: 'app-course-list',
@@ -12,18 +13,27 @@ import { IGetCourse } from 'src/app/models/IHTTPHGet';
 export class CourseListComponent implements OnInit{
 
   courseList: IGetCourse[] = [];
-  hideButton =false;
-
+  get hideButton(): boolean {
+    return this.authService.isAdmin()
+  }
   constructor(private courseService: CourseServiceService,private router: Router,private authService: AuthenticationServiceService) {
   }
   ngOnInit(): void {
    this.getCourseList()
   }
 
-  getCourseList() {
-    this.courseService.getAllCourses().subscribe((data ) => {
-      this.courseList =data
-    })
+  getCourseList():void {
+    this.courseService.getAllCourses().subscribe(
+      (data) => {
+        this.courseList = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching courses:', error);
+        // Handle the error, e.g., show a user-friendly message
+      }
+    );
+    
 
 
   }

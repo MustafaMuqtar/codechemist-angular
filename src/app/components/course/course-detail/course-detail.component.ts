@@ -16,8 +16,9 @@ export class CourseDetailComponent implements OnInit {
 
   course: any;
 
-  //
-  hideButton = false;
+  get hideButton(): boolean {
+    return this.authService.isAdmin()
+  }
 
   player!: any;
 

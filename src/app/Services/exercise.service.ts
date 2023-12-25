@@ -13,7 +13,7 @@ export class ExerciseService {
   constructor(private httpClient: HttpClient) { }
 
 
-  postExercise(postExercise: IPostExercise) {
+  postExercise(postExercise: FormData| IPostExercise) {
 
     return this.httpClient.post(`${environment.apiURL}/${this.exerciseUrl}`, postExercise)
   }

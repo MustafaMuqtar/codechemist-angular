@@ -23,6 +23,9 @@
       <div class="col" *ngFor="let course of courseList; index as i">
         <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
           (click)="deleteCourseById(course.id)">Danger</button>
+     
+          <a routerLink="/course/edit/{{ course.id }}" class="btn btn-light mb-2">Edit</a>
+
         <div (click)="login()" routerLink="/course/detail/{{ course.id }}" role="button"
           class="card shadow-sm border border-warning">
           <img [src]="course.image" class="card-img-top" width="100%" height="225" alt="..." />

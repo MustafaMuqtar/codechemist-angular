@@ -1,44 +1,52 @@
 <div class="container">
-    <form  enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
-        <div class="mb-4">
-            <label for="exampleFormControlInput1" class="form-label">Subject title </label>
-            <input type="text" class="form-control" placeholder="Name" formControlName="title">
+    <form enctype="multipart/form-data"  (ngSubmit)="submittingForm()" [formGroup]="form">
+      <div class="mb-4">
+        <label for="title" class="form-label">Course name</label>
+        <input type="text" id="title" class="form-control" placeholder="Name" formControlName="title">
+        <div *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="text-danger">
+          Exercise name is required.
         </div>
-        <div class="mb-4">
-            <label for="exampleFormControlInput1" class="form-label">Image Upload</label>
-            <input type="file" class="form-control" (change)="onFileSelect($event)" formControlName="content">
+      </div>
+      <div class="mb-4">
+        <label for="pdf" class="form-label">Exercise PDF</label>
+        <input type="file" id="pdf" class="form-control" placeholder="pdf" (change)="onFileSelect($event)" formControlName="pdf">
+        <div *ngIf="form.controls['pdf'].hasError('required') && form.controls['pdf'].touched" class="text-danger">
+          PDF is required.
         </div>
-        
-        <div class="btn-group me-5 mb-5"  *ngFor="let technology of technologyList; index as i" >
-                <button class="btn btn-warning dropdown-toggle" type="button" id="mainDropdown" data-bs-toggle="dropdown"
-                    data-bs-auto-close="outside" aria-expanded="false">
-                    {{ technology.title }}
-                  </button>
-                <ul class="dropdown-menu" aria-labelledby="mainDropdown">
-                    <li class="dropdown dropend"  *ngFor="let lesson of technology.technologyLessons; index as ib">
-                        <a class="dropdown-item dropdown-toggle" id="nestedDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" >
-                            {{ lesson.title }}
-                          </a>
-                        <ul class="dropdown-menu" aria-labelledby="nestedDropdown">
-                            <li><a class="dropdown-item"  *ngFor="let subject of lesson.lessonSubjects; index as i">   <span (click)="getSubjectId(subject.id)" class="fs-5 fw-semibold"> {{ subject.title}}</span></a></li>
-                        </ul>
-                    </li>
-                    <!-- End Nested Dropdown -->
+      </div>
+      
+    
+  
+
+      <div class="btn-group me-5 mb-5"   *ngFor="let course of courseList; index as i" >
+        <button class="btn btn-warning dropdown-toggle" type="button" id="mainDropdown" data-bs-toggle="dropdown"
+            data-bs-auto-close="outside" aria-expanded="false">
+            {{ course.title }}
+          </button>
+        <ul class="dropdown-menu" aria-labelledby="mainDropdown">
+            <li class="dropdown dropend"  *ngFor="let subject of course.courseSubjectLessons; index as ib">
+                <a class="dropdown-item dropdown-toggle" id="nestedDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" >
+                    {{ subject.title }}
+                  </a>
+                <ul class="dropdown-menu" aria-labelledby="nestedDropdown">
+                    <li><a class="dropdown-item"  *ngFor="let lesson of subject.courseLessonVMs; index as i">   <span (click)="getCourseId(lesson.id, lesson.title)" class="fs-5 fw-semibold"> {{ lesson.title}}</span></a></li>
                 </ul>
-            </div>
-          
-        <div class="mb-4">
+            </li>
+            <!-- End Nested Dropdown -->
+        </ul>
+    </div>
+    <p *ngIf="selectedCourseTitle !== null">Exercise will be added in this lesson: <span class="text-info">{{ selectedCourseTitle }}</span></p>
 
-
-            <button type="submit" class="btn btn-warning">
-                <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
-                        aria-hidden="true"></span>
-                    Ading...</span>
-                <span *ngIf="!isCreating"> Submit</span>
-            </button>
-        </div>
+  
+      <div class="mb-4">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid || lessonId.length === 0">
+          <span *ngIf="isCreating">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Adding...
+          </span>
+          <span *ngIf="!isCreating">Submit</span>
+        </button>
+      </div>
     </form>
-</div>
-
-
+  </div>

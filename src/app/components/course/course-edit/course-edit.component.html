@@ -1,1 +1,41 @@
-<p>technology-edit works!</p>
+<div class="container">
+    <form enctype="multipart/form-data" (ngSubmit)="submittingForm()" [formGroup]="form">
+      <div class="mb-4">
+        <label for="title" class="form-label">Course name</label>
+        <input type="text" id="title" class="form-control" placeholder="Name" formControlName="title"
+          [ngModel]="course.title">
+        <div *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="text-danger">
+          Course name is required.
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="image" class="form-label">Image Upload</label>
+        <input type="file" id="image" class="form-control" placeholder="Image" (change)="onFileSelect($event)"
+          formControlName="image">
+        <img [src]="course.image" class="" width="225px" height="225" alt="..." />
+        <div *ngIf="form.controls['image'].hasError('required') && form.controls['image'].touched" class="text-danger">
+          Image is required.
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="description" class="form-label">Course description</label>
+        <textarea id="description" class="form-control" placeholder="Course description" formControlName="description"
+          [ngModel]="course.description"></textarea>
+        <div *ngIf="form.controls['description'].hasError('required') && form.controls['description'].touched"
+          class="text-danger">
+          Course description is required.
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <button type="submit" class="btn btn-success">
+          <span *ngIf="isCreating">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Updating...
+          </span>
+          <span *ngIf="!isCreating">Update</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,22 +1,36 @@
-<div class="container" >
-    <form [formGroup]="createForm" enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
-        <div class="mb-4">
-            <label for="exampleFormControlInput1" class="form-label">Technology name </label>
-            <input type="text" class="form-control" placeholder="Name" formControlName="title">
+<div class="container">
+    <form enctype="multipart/form-data"  (ngSubmit)="submittingForm()" [formGroup]="form">
+      <div class="mb-4">
+        <label for="title" class="form-label">Course name</label>
+        <input type="text" id="title" class="form-control" placeholder="Name" formControlName="title">
+        <div *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="text-danger">
+          Course name is required.
         </div>
-        <div class="mb-4">
-            <label for="exampleFormControlInput1" class="form-label">Image Upload</label>
-            <input type="file" class="form-control" placeholder="Image" (change)="onFileSelect($event)"
-                formControlName="image">
+      </div>
+      <div class="mb-4">
+        <label for="image" class="form-label">Image Upload</label>
+        <input type="file" id="image" class="form-control" placeholder="Image" (change)="onFileSelect($event)" formControlName="image">
+        <div *ngIf="form.controls['image'].hasError('required') && form.controls['image'].touched" class="text-danger">
+          Image is required.
         </div>
-    
-        <div class="mb-4">
-            <button type="submit" class="btn btn-warning">
-                <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
-                    aria-hidden="true"></span>
-                  Ading...</span>
-                <span *ngIf="!isCreating"> Submit</span>
-              </button>        </div>
-
+      </div>
+      <div class="mb-4">
+        <label for="description" class="form-label">Course description</label>
+        <textarea id="description" class="form-control" placeholder="Course description" formControlName="description"></textarea>
+        <div *ngIf="form.controls['description'].hasError('required') && form.controls['description'].touched" class="text-danger">
+          Course description is required.
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <button type="submit" class="btn btn-success">
+          <span *ngIf="isCreating">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Adding...
+          </span>
+          <span *ngIf="!isCreating">Submit</span>
+        </button>
+      </div>
     </form>
-</div>
+  </div>
+  

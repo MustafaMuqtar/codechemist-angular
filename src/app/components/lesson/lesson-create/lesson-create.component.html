@@ -1,26 +1,43 @@
 <div class="container">
-  <form  enctype="multipart/form-data" novalidate (ngSubmit)="handleProfessorClick()">
+  <form enctype="multipart/form-data"  (ngSubmit)="submittingForm()" [formGroup]="form">
     <div class="mb-4">
-      <label for="exampleFormControlInput1" class="form-label">Lesson name
-      </label>
-      <input type="text" class="form-control" placeholder="Name" formControlName="title" />
-    </div>
-    <div class="btn-group mb-5">
-      <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        Action
-      </button>
-      <ul class="dropdown-menu" >
-      <div *ngFor="let course of courseList; index as i">
-        <li (click)="getCourseId(course.id)"><a class="dropdown-item" >{{course.title}}</a></li>
+      <label for="title" class="form-label">Course name</label>
+      <input type="text" id="title" class="form-control" placeholder="Name" formControlName="title">
+      <div *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="text-danger">
+        Course name is required.
       </div>
+    </div>
+    <div class="mb-4">
+      <label for="lessonVideo" class="form-label">Lesson Video</label>
+      <input type="file" id="lessonVideo" class="form-control" placeholder="lessonVideo" (change)="onFileSelect($event)" formControlName="lessonVideo">
+      <div *ngIf="form.controls['lessonVideo'].hasError('required') && form.controls['lessonVideo'].touched" class="text-danger">
+        Image is required.
+      </div>
+    </div>
+    
+    <div *ngFor="let course of courseList" class="btn-group mb-5 me-4">
+      <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+       {{course.title}}
+      </button>
+      <ul  class="dropdown-menu">
+     <div >
+      <li *ngFor="let Subject of course.courseSubjectLessons">
+        <a class="dropdown-item" (click)="getCourseId(Subject.id, Subject.title)">{{ Subject.title }}</a>
+      </li>
+     </div>
       </ul>
     </div>
+    <p *ngIf="selectedCourseTitle !== null">Lesson will be added in this subject: <span class="text-info">{{ selectedCourseTitle }}</span></p>
+
+
     <div class="mb-4">
-      <button type="submit" class="btn btn-warning">
-        <span *ngIf="isCreating"><span class="spinner-border spinner-border-sm" role="status"
-            aria-hidden="true"></span>
-          Ading...</span>
-        <span *ngIf="!isCreating"> Submit</span>
-      </button>    </div>
+      <button type="submit" class="btn btn-success" [disabled]="form.invalid || subjectId.length === 0">
+        <span *ngIf="isCreating">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Adding...
+        </span>
+        <span *ngIf="!isCreating">Submit</span>
+      </button>
+    </div>
   </form>
 </div>

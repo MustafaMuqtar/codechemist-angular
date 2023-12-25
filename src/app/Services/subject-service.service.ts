@@ -16,9 +16,9 @@ export class SubjectServiceService {
 
   }
 
-  postSubject(postSubject: IPostSubject) {
+  postSubject(postSubjectData:FormData| IPostSubject) {
 
-    return this.httpClient.post(`${environment.apiURL}/${this.subjectUrl}`, postSubject)
+    return this.httpClient.post(`${environment.apiURL}/${this.subjectUrl}`, postSubjectData)
   }
 
   deleteSubject(id: number) {

@@ -1,97 +1,88 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
 import { SubjectServiceService } from 'src/app/Services/subject-service.service';
 import { CourseServiceService } from 'src/app/Services/course-service.service';
 import { IGetCourse } from 'src/app/models/IHTTPHGet';
-
-
+import { SideObject } from '@popperjs/core';
 
 @Component({
   selector: 'app-subject-create',
   templateUrl: './subject-create.component.html',
   styleUrls: ['./subject-create.component.css']
 })
-export class SubjectCreateComponent {
-
+export class SubjectCreateComponent implements OnInit {
   public form!: FormGroup;
-  courseList: IGetCourse[] = [];
-  lessonId: number[] = []
-  lessonName: null = null;
-  isCreating: boolean = false
+  public courseId: number[] = [];
+  public isCreating = false;
+  public courseList: IGetCourse[] = [];
+  public selectedCourseTitle: string | null = null;
 
-  constructor(private courseService: CourseServiceService, private subjectService: SubjectServiceService,
-     private router: Router, private activerouter: ActivatedRoute, 
-     private fb: FormBuilder, private httpClient: HttpClient,  private authService: AuthenticationServiceService) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private courseService: CourseServiceService,
+    private subjectService: SubjectServiceService,
+    private router: Router,
+    private authService: AuthenticationServiceService
+  ) {}
+
   ngOnInit(): void {
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+    });
+
+    this.getCourseList();
 
     if (!this.authService.isAdmin()) {
-      this.router.navigate(['/'])
-
-   }
-    this.getCourseList()
-
-    this.form = this.fb.group({
-      title: [''],
-      image: [null],
-
-
-    })
-
+      this.router.navigate(['/']);
+    }
   }
 
-  file: any;
+  submittingForm(): void {
+    if (this.form.invalid) {
+      // Mark all controls as touched to trigger validation messages
+      this.form.markAllAsTouched();
+      return;
+    }
 
-  createForm = this.fb.group(
-    {
-      title: '',
-      content: File,
-
-
-    })
-
- 
-  getCourseList() {
-    this.courseService.getAllCourses().subscribe((data) => {
-      this.courseList = data
-    })
-
-
-  }
-  handleProfessorClick(): void {
-
-    let formData: any = new FormData();
-    this.lessonId.forEach(function (value) {
-      formData.append("lessonId", value);
+    const formData = new FormData();
+    this.courseId.forEach(value => {
+      formData.append('courseId', value.toString());
     });
 
-    formData.append('title', this.createForm.value.title);
-    formData.append('content', this.file);
-    this.isCreating = true
+    formData.append('title', this.form.value.title);
 
+    this.isCreating = true;
 
-    this.subjectService.postSubject(formData).subscribe((result) => {
-
+    this.subjectService.postSubject(formData).subscribe(result => {
       if (result) {
-        this.router.navigate(['/course/detail/1'])
+        this.router.navigate(['/course/detail/1']);
       }
-
     });
-
-
   }
 
-
-  onFileSelect(event: any) {
-
-    this.file = <File>event.target.files[0]
-
+  getCourseId(courseId: number, courseTitle: string): void {
+    this.courseId.push(courseId);
+    this.selectedCourseTitle = courseTitle;
   }
+  
+  
+  getCourseList() {
+    this.courseService.getAllCourses().subscribe(
+      (data) => {
+        this.courseList = data;
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error fetching courses:', error);
+        // Handle the error, e.g., show a user-friendly message
+      }
+    );
+    
 
-  getLessonId(e: number) {
-    this.lessonId.push(e);
+
   }
 
 }

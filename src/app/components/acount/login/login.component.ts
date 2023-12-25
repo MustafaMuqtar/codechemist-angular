@@ -1,9 +1,7 @@
-import { HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Login } from 'src/app/models/login';
-import { JwtAuth } from 'src/app/models/jwtAuth';
 import { AuthenticationServiceService } from 'src/app/Services/authentication-service.service';
+import { Router } from '@angular/router';
+import { Login } from 'src/app/models/login';
 
 @Component({
   selector: 'app-login',
@@ -13,37 +11,40 @@ import { AuthenticationServiceService } from 'src/app/Services/authentication-se
 export class LoginComponent implements OnInit {
 
   loginDto = new Login();
-  jwtDto = new JwtAuth();
+  jwtDto: any; // Update the type based on your JwtAuth model
 
   constructor(private authService: AuthenticationServiceService, private router: Router) { }
-   get hideButton(): boolean {
-    return this.authService.isMember()
 
-  }
   ngOnInit(): void {
     if (this.authService.userToken) {
-      this.router.navigate(['/'])
-   }
-
+      this.router.navigate(['/']);
+    }
   }
-
 
   loginUser(loginDto: Login) {
-    this.authService.login(loginDto).subscribe((jwtDto) => {
+    if (!loginDto.email || !loginDto.password) {
+      // If email or password is empty, do not proceed and show error messages
+      console.error("Email and Password are required");
+      return;
+    }
 
-
-      if (jwtDto) {
-        console.log("dfd")
-        localStorage.setItem("token", jwtDto.token);
-
-
-        this.router.navigate(['/']).then(() => {
-          // Reload the page
-          window.location.reload();
-        });
+    this.authService.login(loginDto).subscribe(
+      (jwtDto) => {
+        if (jwtDto) {
+          console.log("Login successful");
+          localStorage.setItem("token", jwtDto.token);
+          this.router.navigate(['/']).then(() => {
+            // Reload the page
+            window.location.reload();
+          });
+        }
+      },
+      (error) => {
+        // Handle login error (e.g., wrong password or email)
+        console.error("Login failed:", error);
+        // Display appropriate error message to the user
+        // You can use a service to show a global error message or update a variable to show it in the template
       }
-    });
+    );
   }
-
-
 }

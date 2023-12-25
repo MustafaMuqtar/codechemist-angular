@@ -8,7 +8,7 @@
     <ul class="list-unstyled ps-0">
       <li *ngFor="let courseSubjectLessons of course.courseSubjectLessons; index as i" class="mb-1">
         <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
-          (click)="deleteLessonById(courseSubjectLessons.id)">Danger</button>
+          (click)="deleteSubjectById(courseSubjectLessons.id)">Delete subject</button>
 
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
           data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
@@ -43,20 +43,23 @@
           <div class="container text-start  align-items-center ">
             <div class="col ">
               <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
-                (click)="deleteSubjectById(courseLesson.id)">Danger</button>
+                (click)="deleteLessonById(courseLesson.id)">Delete lesson Video</button>
 
               <h1 class="fs-1 fw-semibold text-warning">{{ courseLesson.title }}</h1>
 
-              <app-video-player [videoLink]="courseLesson.content"></app-video-player>
+              <app-video-player [videoLink]="courseLesson.lessonVideo"></app-video-player>
             </div>
             <div class="col mt-5" *ngIf="courseLesson.subjectsExercises?.pdf && courseLesson.subjectsExercises?.title">
-              <button *ngIf="hideButton" type="button" class="btn btn-danger invisible mb-2"
-                      (click)="deleteExerciseById(courseLesson.subjectsExercises.id)">Danger</button>
-            
-              <a class="fs-3 fw-semibold text-decoration-none d-inline-block p-2 mb-2 bg-warning text-dark rounded"
-                 [href]="courseLesson.subjectsExercises.pdf" target="_blank">{{ courseLesson.subjectsExercises.title }}</a>
+              <button *ngIf="hideButton" type="button" class="btn btn-danger me-4 mb-2"
+                (click)="deleteExerciseById(courseLesson.subjectsExercises.id)">Delete PDF</button>
+
+              <a class="fs-3 fw-semibold text-decoration-none d-inline-block p-2 mb-2  bg-warning text-dark rounded"
+                [href]="courseLesson.subjectsExercises.pdf" target="_blank">{{ courseLesson.subjectsExercises.title
+                }}</a>
+ 
+
             </div>
-            
+
 
           </div>
         </div>
@@ -67,5 +70,3 @@
     </div>
   </div>
 </div>
-
-
