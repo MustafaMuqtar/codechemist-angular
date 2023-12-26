@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "pdfjs-dist"
             ],
-            "outputPath": "../../Backend/codechemist-API/codechemist/wwwroot/AngularBuild",
+            "outputPath": "../../Backend/codechemist-API/codechemist/wwwroot/Dist",
             
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -1,21 +1,38 @@
-<form #usersForm="ngForm" enctype="multipart/form-data"  (ngSubmit)="loginUser(usersForm.value)">
-  <div class="row m-5 text-center">
-    <div class="col-md-4 offset-md-4 border border-warning">
-      <img class="mb-4 mt-4"  src="./assets/images/codechemist.svg" alt="" width="92" height="77">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-      
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="border border-warning p-4">
+        <img class="mb-4 mt-4" src="./assets/images/codechemist.svg" alt="" width="92" height="77">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-      <div class="form-floating mb-4 border border-warning-subtle">
-        <input type="email" class="form-control"  placeholder="name@example.com" ngModel name="email" >
-        <label for="floatingInput">Email address</label>
+        <form #usersForm="ngForm" enctype="multipart/form-data" (ngSubmit)="loginUser(usersForm.value)">
+          <div class="form-floating  border border-warning-subtle">
+            <input type="email" class="form-control" placeholder="name@example.com" [(ngModel)]="loginDto.email"
+              name="email" required>
+            <label for="floatingInput">Email address</label>
+
+          </div>
+          <div *ngIf="emailMessage" class="text-danger">
+            {{ emailMessage }}
+          </div>
+
+
+          <div class="form-floating mt-4 border border-warning-subtle">
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginDto.password"
+              name="password" required>
+            <label for="floatingPassword">Password</label>
+
+          </div>
+          <div *ngIf="passwordMessage" class="text-danger">
+            {{ passwordMessage }}
+          </div>
+
+          <button class="btn btn-warning w-100 py-2 mt-5 " type="submit">Sign in</button>
+          <div *ngIf="errorMessage" class="text-danger ">
+            {{ errorMessage }}
+          </div>
+        </form>
       </div>
-
-      <div class="form-floating mb-4 border border-warning-subtle">
-        <input type="password" class="form-control" placeholder="Password" ngModel name="password">
-        <label for="floatingPassword">Password</label>
-      </div>
-
-      <button class="btn btn-warning w-100 py-2 mb-5" type="submit">Sign in</button>
     </div>
   </div>
-</form>
+</div>

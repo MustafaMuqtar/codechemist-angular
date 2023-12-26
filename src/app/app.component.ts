@@ -23,10 +23,8 @@ export class AppComponent {
 
 
   if (this.authService.isAdmin()) {
-    console.log('User is an admin');
   }
   else if (this.authService.isMember()) {
-    console.log('User is an member');
   }
   }
 

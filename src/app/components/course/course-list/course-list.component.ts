@@ -26,11 +26,9 @@ export class CourseListComponent implements OnInit{
     this.courseService.getAllCourses().subscribe(
       (data) => {
         this.courseList = data;
-        console.log(data);
       },
       (error) => {
         console.error('Error fetching courses:', error);
-        // Handle the error, e.g., show a user-friendly message
       }
     );
     
