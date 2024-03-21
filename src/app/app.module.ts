@@ -24,6 +24,8 @@ import { SubjectEditComponent } from './components/subject/subject-edit/subject-
 import { LessonCreateComponent } from './components/lesson/lesson-create/lesson-create.component';
 import { LessonEditComponent } from './components/lesson/lesson-edit/lesson-edit.component';
 import { ExerciseCreateComponent } from './components/exercise/exercise-create/exercise-create.component';
+import { GameComponent } from './components/game/game.component';
+
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { ExerciseCreateComponent } from './components/exercise/exercise-create/e
     LessonCreateComponent,
     LessonEditComponent,
     ExerciseCreateComponent,
+    GameComponent,
+  
 
   ],
   imports: [

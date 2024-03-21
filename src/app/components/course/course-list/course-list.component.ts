@@ -20,6 +20,7 @@ export class CourseListComponent implements OnInit{
   }
   ngOnInit(): void {
    this.getCourseList()
+   
   }
 
   getCourseList():void {
@@ -36,10 +37,15 @@ export class CourseListComponent implements OnInit{
 
   }
 
-  login() {
+  login(e:any) {
     if (!this.authService.isMember()) {
-      this.router.navigate(['/login'])
-    }
+      this.router.navigate(['/login']);
+    } 
+       this.courseService.courseIdRediect = e;
+    localStorage.setItem('id',this.courseService.courseIdRediect)
+    
+   
+  
   }
   deleteCourseById(id : number) {
     this.courseService.deleteCourse(id).subscribe((data) => {

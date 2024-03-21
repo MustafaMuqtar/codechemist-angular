@@ -10,25 +10,22 @@
             <input type="email" class="form-control" placeholder="name@example.com" [(ngModel)]="loginDto.email"
               name="email" required>
             <label for="floatingInput">Email address</label>
-
           </div>
           <div *ngIf="emailMessage" class="text-danger">
             {{ emailMessage }}
           </div>
 
-
           <div class="form-floating mt-4 border border-warning-subtle">
             <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginDto.password"
               name="password" required>
             <label for="floatingPassword">Password</label>
-
           </div>
           <div *ngIf="passwordMessage" class="text-danger">
             {{ passwordMessage }}
           </div>
 
           <button class="btn btn-warning w-100 py-2 mt-5 " type="submit">Sign in</button>
-          <div *ngIf="errorMessage" class="text-danger ">
+          <div *ngIf="errorMessage" class="text-danger">
             {{ errorMessage }}
           </div>
         </form>

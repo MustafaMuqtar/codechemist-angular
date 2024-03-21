@@ -1,5 +1,6 @@
 export class JwtAuth {
     token= "";
-    result: boolean= true;
-    error: any;
+    isLoggedIn: boolean = false;
+    logoutMessages:string [] = [] ;
+    
 }

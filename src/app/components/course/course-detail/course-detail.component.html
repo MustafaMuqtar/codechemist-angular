@@ -1,0 +1,72 @@
+<!-- your-component.component.html -->
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- First Div (3 columns) -->
+    <div class="flex-shrink-0 sticky-top p-4 col-md-5" style="max-height: 600px; overflow-y: auto;">
+      <a class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom border-warning">
+        <img [src]="course.image" width="50" height="50" class="bi me-2" alt="..." />
+        <span class="fs-4 fw-semibold text-warning text-wrap">{{ course.title }} </span>
+      </a>
+      <ul class="list-unstyled ps-0">
+        <ng-container *ngFor="let courseSubjectLessons of course.courseSubjectLessons; let i = index">
+          <li class="mb-1">
+            <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2" (click)="deleteLessonById(courseSubjectLessons.id)">Danger</button>
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" [attr.data-bs-target]="'#home-collapse-' + i" aria-expanded="true">
+              <span class="fs-5 fw-semibold text-warning" (click)="showSubItem(i)">
+                <span class="">Sektion {{i + 1}}</span>: {{ courseSubjectLessons.title }}
+              </span>
+            </button>
+
+            <div *ngIf="visibleIndex === i">
+              <div *ngFor="let courseLesson of courseSubjectLessons.courseLessonVMs; let b = index"
+                class="collapse show" [attr.id]="'home-collapse-' + i">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ms-5 small">
+                  <li>
+                    <a role="button"
+                      class=" fs-5 fw-semibold link-body-emphasis d-inline-flex text-decoration-none rounded pe-auto mb-4"
+                      (click)="showSubItem2(courseLesson.id)">
+                      {{ courseLesson.title }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr style="height: 1px; background-color: #ffc107; border: none;" />
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <!-- Second Div (9 columns) -->
+    <div class="col-md-7">
+      <!-- Additional Divs -->
+      <div>
+        <ng-container *ngFor="let courseSubjectLessons of course.courseSubjectLessons; let i = index">
+          <ng-container *ngFor="let courseLesson of courseSubjectLessons.courseLessonVMs; let b = index">
+            <div *ngIf="visibleIndex2 === courseLesson.id">
+              <div class="container text-start align-items-center">
+                <div class="col">
+                  <button *ngIf="hideButton" type="button" class="btn btn-danger  mb-2"
+                    (click)="deleteSubjectById(courseLesson.id)">Danger</button>
+
+                    <h1 class="text-warning">{{ courseLesson.title }}</h1>
+                  <app-video-player [videoLink]="courseLesson.lessonVideo"></app-video-player>
+                </div>
+                <div class="col" *ngIf="courseLesson.subjectsExercises?.pdf && courseLesson.subjectsExercises?.title">
+                  <button *ngIf="hideButton" type="button" class="btn btn-danger invisible mb-2"
+                    (click)="deleteExerciseById(courseLesson.subjectsExercises.id)">Danger</button>
+                    
+                  <a class="fs-3 fw-semibold text-decoration-none d-inline-block p-2 mt-3 bg-warning text-dark rounded"
+                  [href]="courseLesson.subjectsExercises.pdf" target="_blank">
+                  {{ courseLesson.subjectsExercises.title }}
+                </a>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

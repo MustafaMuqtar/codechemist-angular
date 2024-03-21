@@ -33,6 +33,9 @@ const routes: Routes = [
    { path: 'subject/create', component: SubjectCreateComponent },
     { path: 'subject/edit/:id', component: SubjectEditComponent },
     { path: 'portfolio', component: IndexComponent },
+ 
+
+
 
   { path: '**', component: NotfoundComponent },
 

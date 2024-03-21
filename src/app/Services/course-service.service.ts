@@ -11,6 +11,7 @@ import { IPostCourse } from "../models/IHTTPHPost";
 export class CourseServiceService {
 
   courseUrl = "Course/"
+  courseIdRediect:any;
   constructor(private httpClient: HttpClient) { }
 
   getAllCourses() {

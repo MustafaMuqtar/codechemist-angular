@@ -1,0 +1,18 @@
+/* your-component.component.css */
+
+::ng-deep .navbar-nav .nav-item.dropdown .nav-link {
+    color: #ffc107 !important; /* Yellow text */
+  }
+  
+  ::ng-deep .navbar-nav .nav-item.dropdown .dropdown-menu {
+    border: 1px solid #ffc107; /* Yellow border */
+  }
+  
+  ::ng-deep .navbar-nav .nav-item.dropdown .dropdown-item {
+    color: #ffc107 !important; /* Yellow text */
+  }
+  
+  ::ng-deep .navbar-nav .nav-item.dropdown .dropdown-divider {
+    border-top: 1px solid #ffc107; /* Yellow horizontal line */
+  }
+  

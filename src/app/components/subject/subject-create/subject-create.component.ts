@@ -58,7 +58,7 @@ export class SubjectCreateComponent implements OnInit {
 
     this.subjectService.postSubject(formData).subscribe(result => {
       if (result) {
-        this.router.navigate(['/course/detail/1']);
+        window.location.reload();
       }
     });
   }
@@ -73,7 +73,6 @@ export class SubjectCreateComponent implements OnInit {
     this.courseService.getAllCourses().subscribe(
       (data) => {
         this.courseList = data;
-        console.log(data);
       },
       (error) => {
         console.error('Error fetching courses:', error);

@@ -1,0 +1,10 @@
+/* your-component.component.css */
+
+@media (max-width: 767px) {
+    .sticky-top {
+      position: relative; /* or unset */
+      top: auto;
+      z-index: auto;
+    }
+  }
+  

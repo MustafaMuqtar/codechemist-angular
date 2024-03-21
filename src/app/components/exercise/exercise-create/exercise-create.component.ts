@@ -57,7 +57,8 @@ export class ExerciseCreateComponent {
   
       this.exerciseService.postExercise(formData).subscribe((result) => {
         if (result) {
-          this.router.navigate(['']);
+          window.location.reload();
+
         }
       });
     }
@@ -78,7 +79,6 @@ export class ExerciseCreateComponent {
     this.courseService.getAllCourses().subscribe(
       (data) => {
         this.courseList = data;
-        console.log(data);
       },
       (error) => {
         console.error('Error fetching courses:', error);

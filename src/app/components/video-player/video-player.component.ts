@@ -15,7 +15,9 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   
   options = {
     autoplay: false,
-    notSupportedMessage: 'Invalid Video URL', // to change the default message
+    notSupportedMessage: 'Invalid Video URL',
+    fluid: true, // Enable responsiveness
+
   };
 
   player!: any;
@@ -24,7 +26,6 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   constructor() { }
 
   ngAfterViewInit(): void {
-    
     this.readyVideojsPlayer();
   }
 

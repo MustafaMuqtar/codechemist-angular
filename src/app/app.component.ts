@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthenticationServiceService } from './Services/authentication-service.service';
-import { jwtDecode } from 'jwt-decode';
-
 
 @Component({
   selector: 'app-root',
@@ -12,36 +10,30 @@ export class AppComponent {
   title = 'codechemist';
 
   get hideButton(): boolean {
-    return this.authService.isAdmin()
+    return this.authService.isAdmin();
   }
 
+  constructor(private authService: AuthenticationServiceService) {}
 
-  constructor(private authService: AuthenticationServiceService) {
-  }
   ngOnInit(): void {
+    if (this.authService.isAdmin()) {
+      console.log('admin');
+    }  if (this.authService.isMember()) {
+      console.log('member');
+    }
 
-
-
-  if (this.authService.isAdmin()) {
+    this.accesCurrentUSer();
   }
-  else if (this.authService.isMember()) {
-  }
-  }
-
-
-  ngAfterOnInit() : void{
-    this.accesCurrentUSer()
-
-  }
-
 
   accesCurrentUSer() {
-    this.authService.getCurrentUser(this.authService.userToken).subscribe((data) => {
-
-
-
-    })
-
-
+    this.authService.getCurrentUser().subscribe(
+      (data) => {
+   
+      },
+      (error) => {
+        // Handle errors (e.g., redirect to login)
+        console.error('Error getting current user:', error);
+      }
+    );
   }
 }

@@ -57,7 +57,8 @@ export class LessonCreateComponent {
   
       this.lessonService.postLesson(formData).subscribe((result) => {
         if (result) {
-          this.router.navigate(['']);
+          window.location.reload();
+
         }
       });
     }
@@ -78,7 +79,6 @@ export class LessonCreateComponent {
     this.courseService.getAllCourses().subscribe(
       (data) => {
         this.courseList = data;
-        console.log(data);
       },
       (error) => {
         console.error('Error fetching courses:', error);

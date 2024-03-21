@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "pdfjs-dist"
             ],
-            "outputPath": "../../Backend/codechemist-API/codechemist/wwwroot/Dist",
+            "outputPath": "../../Backend/codechemist-API/codechemist/wwwroot/dist",
             
             "index": "src/index.html",
             "main": "src/main.ts",
