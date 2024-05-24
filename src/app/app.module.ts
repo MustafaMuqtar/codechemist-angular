@@ -13,8 +13,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CommonModule } from '@angular/common';
-import { IndexComponent } from './components/portfolio/index/index.component';
-
 import { CourseListComponent } from './components/course/course-list/course-list.component';
 import { CourseEditComponent } from './components/course/course-edit/course-edit.component';
 import { CourseDetailComponent } from './components/course/course-detail/course-detail.component';
@@ -38,7 +36,6 @@ import { GameComponent } from './components/game/game.component';
     NotfoundComponent,
     FooterComponent,
     VideoPlayerComponent,
-    IndexComponent,
     CourseListComponent,
     CourseCreateComponent,
     CourseEditComponent,

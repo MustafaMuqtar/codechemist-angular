@@ -13,7 +13,6 @@ import { RegisterComponent } from "../components/acount/register/register.compon
 import { NotfoundComponent } from "../components/notfound/notfound.component";
 import { LessonCreateComponent } from "../components/lesson/lesson-create/lesson-create.component";
 import { ExerciseCreateComponent } from "../components/exercise/exercise-create/exercise-create.component";
-import { IndexComponent } from "../components/portfolio/index/index.component";
 
 
 
@@ -32,11 +31,6 @@ const routes: Routes = [
     { path: 'lesson/edit/:id', component: LessonEditComponent },
    { path: 'subject/create', component: SubjectCreateComponent },
     { path: 'subject/edit/:id', component: SubjectEditComponent },
-    { path: 'portfolio', component: IndexComponent },
- 
-
-
-
   { path: '**', component: NotfoundComponent },
 
 ]
