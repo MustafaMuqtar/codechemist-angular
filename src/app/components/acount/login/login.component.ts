@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', jwtDto.token);
           console.log('Login API success:', jwtDto.logoutMessages);
 
-          this.showLogoutMessages(jwtDto.logoutMessages);
 
           const courseId = this.courseService.courseIdRediect;
           if (courseId && !isNaN(courseId)) {
@@ -76,16 +75,4 @@ export class LoginComponent implements OnInit {
       },
     );
   }
-
-  private showLogoutMessages(logoutMessages: string[]) {
-
-    logoutMessages.forEach((message) => {
-      console.log('Logout message for other users:', message);
-    });
-  
-    this.router.navigate(['/login']).then(() => {
-      window.location.reload();
-    });
-  }
-  
 }
